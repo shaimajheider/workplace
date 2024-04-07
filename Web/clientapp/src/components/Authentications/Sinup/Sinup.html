@@ -1,0 +1,418 @@
+﻿
+
+
+<div>
+
+    <div class="rbt-become-area bg-color-white rbt-section-gap"
+         style="background-image: linear-gradient(to right, #75bcd5, #6db6d0, #66b0cb, #5eabc6, #56a5c1, #4f9db9, #4796b1, #408ea9, #38839d, #307891, #286d85, #206279) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <!--<span class="subtitle bg-pink-opacity" style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important; color: white;">منصة ترانيم العلم</span>-->
+                        <div class="video-popup-wrapper">
+                            <!--<img class="rbt-radius imagelog" src="assets/images/image/5.png" alt="Video Images"
+                                 style="width: 27% ; margin-top: -50px; ">-->
+                            <!--<a class="rbt-btn rounded-player-2 popup-video position-to-top with-animation" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
+                                <span class="play-icon"></span>
+                            </a>-->
+                        </div>
+                        <h2 class="title" style=" color: white;">التسجيل داخل النظام   </h2>
+                        <p class="description has-medium-font-size mt--20 mb--40" style=" color: white;">
+                        تسجيل مستفيد جديد داخل النظام  </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row row--30">
+
+                <div class="col-lg-12 mt_md--40 mt_sm--40 order-2 order-lg-1" dir="rtl">
+                    <div class="advance-tab-button">
+                        <ul class="nav nav-tabs tab-button-style-2" id="myTab-4" role="tablist">
+                            <li role="presentation">
+                                <a href="#" class="tab-button" id="home-tab-4" data-bs-toggle="tab" data-bs-target="#home-4" role="tab" aria-controls="home-4" aria-selected="false">
+                                    <span class="title" style=" color: white;">شروط التسجيل</span>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#" class="tab-button active" id="profile-tab-4" data-bs-toggle="tab" data-bs-target="#profile-4" role="tab" aria-controls="profile-4" aria-selected="true">
+                                    <span class="title" style=" color: white;">طريقة التسجيل</span>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#" class="tab-button" id="contact-tab-4" data-bs-toggle="tab" data-bs-target="#contact-4" role="tab" aria-controls="contact-4" aria-selected="false">
+                                    <span class="title" style=" color: white;">اعتماد البيانات</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content advance-tab-content-style-2">
+                        <div class="tab-pane fade" id="home-4" role="tabpanel" aria-labelledby="home-tab-4">
+                            <div class="content">
+                                <p style=" color: white;">
+                                    قم بإختيار البرنامج البرنامج الخاص بك والتحقق من ان المستفيد يشمل الفئات المستهدفة الخاصة بالبرنامج 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade active show" id="profile-4" role="tabpanel" aria-labelledby="profile-tab-4">
+                            <div class="content">
+                                <p style=" color: white;">
+                                    تسجيل البيانات الشخصية وارفاق الملفات المطلوبة مع التأكد من أن مدخل البيانات يتحمل كافة المسئولية بشأن البيانات المدخلة 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact-4" role="tabpanel" aria-labelledby="contact-tab-4">
+                            <div class="content">
+                                <p style=" color: white;">
+                                    بعد التسجيل داخل النظام تقوم الادارة بمراجعة البيانات الخاصة بالمستفيد والتحقق منها ويبقي الحساب قيد التحقق الا ان تقوم الادارة بالموافقة علي البيانات المدخلة 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt--60 g-5" style="direction:rtl">
+                <div class="col-lg-4">
+                    <div class="thumbnail">
+                        <img class="radius-10 w-100" src="assets/images/image/126.jpg" style="height: 789px;" alt="Corporate Template">
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+
+
+
+                        <div class="section-title text-end">
+                            <span class="subtitle bg-primary-opacity">تسجيل بيانات المستفيد</span>
+                        </div>
+                        <h3 class="title">البرنامج المستهدف</h3>
+                        <hr class="mb--30">
+
+                        <!--<el-form :model="ruleForm"
+                        :rules="rules"
+                        ref="ruleForm"
+                        class="multisteps-form__form mb-8"
+                        style="height: auto; padding: 20px">-->
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm" class="row row--15">
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <el-form-item label="البرنامج المستهدف" prop="ProgramId">
+                                        <el-select v-model="ruleForm.ProgramId" placeholder=" " filterable style="width:100%">
+                                            <el-option v-for="item in [{id:1,name:'برنامج زراعة القرنية'}
+                                                       ,{id:2,name:'برنامج جراحة الشبكة والجسم الزجاجي'}
+                                                       ,{id:3,name:'برنامج جراحة اعوجاج العمود الفقري  '}
+                                                       ,{id:4,name:'برنامج جراحة   المفاصل'}
+                                                       ,{id:5,name:'برنامج    علاج تأخر الحمل'}
+                                                       ,{id:6,name:'برنامج    زراعة القوقعة'}
+                                                       ]"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <!--<input name="con_phone" type="text">
+            <label>الجنس </label>
+            <span class="focus-border"></span>-->
+                                </div>
+                            </div>
+
+
+                            <div class="row" style="margin-top: 40px;margin-bottom: 20px;">
+                                <el-divider content-position="right">
+                                    <h4 style="font-family: 'DroidArabicKufiRegular';">  البيانات الشخصية   </h4>
+                                </el-divider>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <el-form-item label="الإسم الأول " prop="FirstName">
+                                        <input v-model="ruleForm.FirstName" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <el-form-item label="اسم الاب " prop="FatherName">
+                                        <input v-model="ruleForm.FatherName" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <el-form-item label="إسم الجد  " prop="GrandFatherName">
+                                        <input v-model="ruleForm.GrandFatherName" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <el-form-item label="اللقب  " prop="SirName">
+                                        <input v-model="ruleForm.SirName" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <el-form-item label="الرقم الوطني" prop="Nid">
+                                        <input v-model="ruleForm.Nid" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <el-form-item label="رقم الهاتف" prop="Phone">
+                                        <input v-model="ruleForm.Phone" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <el-form-item label="الجنس" prop="Gender">
+                                        <el-select v-model="ruleForm.Gender" filterable placeholder=" ">
+                                            <el-option v-for="item in [{id:1,name:'ذكر'},{id:2,name:'انثي'}]"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <!--<input name="con_phone" type="text">
+            <label>الجنس </label>
+            <span class="focus-border"></span>-->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <el-form-item label="تاريخ الميلاد" prop="BirthDate">
+                                        <el-date-picker v-model="ruleForm.BirthDate"
+                                                        type="date">
+                                        </el-date-picker>
+                                    </el-form-item>
+                                    <!--<input name="con_phone" type="text">
+            <label>الجنس </label>
+            <span class="focus-border"></span>-->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <!--<label>المرحلة التعليمية  </label>-->
+                                    <el-form-item label=" المدينة " prop="CityId">
+                                        <el-select v-model="ruleForm.CityId"
+                                                   @change="GetFacilitiesInfo"
+                                                   filterable placeholder=" ">
+                                            <el-option v-for="item in Cities"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <!--<input name="con_phone" type="text">
+            <label>السنة الدراسية  </label>
+            <span class="focus-border"></span>-->
+                                </div>
+                            </div>
+
+
+
+                            <!--<div class="row" style="margin-top: 40px;margin-bottom: 20px;">
+                                <el-divider content-position="right">
+                                    <h4 style="font-family: 'DroidArabicKufiRegular';">   بيانات الحساب    </h4>
+                                </el-divider>
+                            </div>-->
+
+
+                            <!--<hr class="mb--30">
+    <h3 class="title" style="text-align:right"> </h3>
+    <hr class="mb--30">-->
+
+
+
+
+
+                            <!--<div class="col-lg-4">
+                                <div class="form-group">
+                                    <el-form-item label="إسم الستخدم  " prop="LoginName">
+                                        <input v-model="ruleForm.LoginName" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <el-form-item label="كلمة المرور" prop="Password">
+                                        <input v-model="ruleForm.Password" name="con_name" type="password">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <el-form-item label="تأكيد كلمة المرور" prop="ConfirmPassword">
+                                        <input v-model="ruleForm.ConfirmPassword" name="con_name" type="password">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>-->
+
+
+                            <div class="row" style="margin-top: 40px;margin-bottom: 20px;">
+                                <el-divider content-position="right">
+                                    <h4 style="font-family: 'DroidArabicKufiRegular';">   البيانات الطبية   </h4>
+                                </el-divider>
+                            </div>
+
+                            <!--<hr class="mb--30">
+    <h3 class="title" style="text-align:right">  </h3>
+    <hr class="mb--30">-->
+
+
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <el-form-item label="إسم الطبيب المعالج  " prop="DoctorName">
+                                        <input v-model="ruleForm.DoctorName" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <el-form-item label="المرفق الطبي المتردد عليه " prop="FacilityId">
+                                        <el-select v-model="ruleForm.FacilityId"
+                                                   filterable placeholder=" ">
+                                            <el-option v-for="item in Facilities"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 40px;">
+                                <el-divider content-position="right"><h4 style="font-family: 'DroidArabicKufiRegular';">  تقرير طبي حديث    </h4></el-divider>
+                            </div>
+
+                            <div class="row" style="direction:rtl;text-align:center">
+                                <div class="col-md-12">
+                                    <el-form-item>
+                                        <el-upload action="#"
+                                                   :on-change="SelectCoverAttachment"
+                                                   list-type="picture-card"
+                                                   :auto-upload="false">
+                                            <i slot="default" class="el-icon-plus"></i>
+                                            <div slot="file" slot-scope="{file}">
+                                                <img class="el-upload-list__item-thumbnail"
+                                                     :src="file.url" alt="">
+                                                <span class="el-upload-list__item-actions">
+                                                    <span class="el-upload-list__item-preview"
+                                                          style="margin-left:15px"
+                                                          @click="handlePictureCardPreview(file)">
+                                                        <i class="el-icon-zoom-in"></i>
+                                                    </span>
+                                                    <span v-if="!disabled"
+                                                          class="el-upload-list__item-delete"
+                                                          @click="handleDownload(file)">
+                                                        <i class="el-icon-download"></i>
+                                                    </span>
+                                                    <span v-if="!disabled"
+                                                          class="el-upload-list__item-delete"
+                                                          @click="handleRemove(file)">
+                                                        <i class="el-icon-delete"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </el-upload>
+                                    </el-form-item>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <el-dialog :visible.sync="dialogVisible">
+                                        <img width="100%" :src="dialogImageUrl" alt="">
+                                    </el-dialog>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12" style="text-align:right">
+                                <div>
+                                    <span style="text-align:right">
+                                        إدارة النظام تنوه المستخدمين بتسجيل البيانات الشخصية دون التلاعب او التزوير وان اي محاولة تزوير في البيانات المرفقة يتحمل المدخل كافة المسئولية القانونية
+                                    </span>
+                                </div>
+                                <br />
+                            </div>
+
+                            <div class="col-lg-12" style="text-align:right">
+                                <div class="form-submit-group" style="direction:ltr">
+                                    <button @click.prevent="submitForm('ruleForm')"
+                                            type="submit"
+                                            class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100"
+                                            style="background-image: linear-gradient(to right, #75bcd5, #6db6d0, #66b0cb, #5eabc6, #56a5c1, #4f9db9, #4796b1, #408ea9, #38839d, #307891, #286d85, #206279);">
+                                        <span class="icon-reverse-wrapper">
+                                            <span class="btn-text">إرسال البيانات  </span>
+                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </el-form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

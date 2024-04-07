@@ -1,0 +1,47 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ScreenControl/v16/Server/sqlite3
+
+/Publish
+/vue-argon-dashboard-2-pro-v3.0.1.zip
+/vue-argon-dashboard-2-pro-v3.0.1
+/argon-dashboard-pro-html-v2.0.5
+/vue-argon-dashboard-2-pro-v3.0.1
+/html templeate
+/FirstScema.sql
+
+/WebPublish
+/Resurse
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
+
+/cypress/videos/
+/cypress/screenshots/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+.ntvs
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
+

@@ -1,0 +1,742 @@
+﻿<div class="container-fluid py-4" dir="rtl">
+    <div class="row" >
+        <div class="col-12">
+
+            <div class="card" v-if="state==0">
+                <!-- Card header -->
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="font-weight-bolder mb-0">إدارة بيانات  الشركات </h5>
+                            <p class="mb-0 text-sm" style="margin-top: 7px;">قائمة بجميع الشركات  المسجلة  داخل النظام  </p>
+                        </div>
+                        <div class="ms-auto my-auto mt-lg-0 mt-4">
+                            <div class="ms-auto my-auto">
+
+                                <button style="margin: 10px;" type="button" @click="Refresh()"
+                                        class="btn btn-outline-warning btn-sm mb-0">
+                                    تحديث
+                                </button>
+
+                                <!--<button style="margin: 10px;" type="button" @click="Print()"
+                                class="btn btn-outline-success btn-sm mb-0">
+                            طباعة البيانات
+                        </button>-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row mt-3 px-3">
+                    <div class="col-md-11"></div>
+                    <div class="col-md-1">
+                        <div class="dataTable-top" style="margin-top:23px">
+                            <el-select v-model="pageSize"
+                                       @change="GetInfo()"
+                                       filterable
+                                       style=" width: 130%;">
+                                <el-option v-for="item in [{id:5,name:'5'},
+                                                           {id:10,name:'10'},
+                                                           {id:20,name:'20'},
+                                                           {id:40,name:'40'},
+                                                           {id:80,name:'80'},
+                                                           {id:100,name:'100'},
+                                                           {id:200,name:'200'},
+                                           ]"
+                                           :key="item.id"
+                                           :label="item.name"
+                                           :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--{{Info}}-->
+                <el-alert style="margin-top:40px"
+                          v-if="Info==0"
+                          title="عذرا لاتــوجد بيـــانـــات لـعـرضــهــا !!!"
+                          type="info"
+                          center
+                          :closable="false"
+                          show-icon>
+                </el-alert>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                            <div class="dataTable-container" v-if="Info!=0">
+                                <table class="table table-flush dataTable-table" id="products-list">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a>  إسم الشركة وشعارها  </a>
+                                            </th>
+                                            <th>
+                                                <a>  إسم مدير الشركة  </a>
+                                            </th>
+                                            <th>
+                                                <a> رقم هاتف مدير الشركة </a>
+                                            </th>
+                                            <th>
+                                                <a> إسم الدخول  </a>
+                                            </th>
+                                            <th>
+                                                <a> رقم الهاتف   </a>
+                                            </th>
+                                            <th>
+                                                <a> البريد الإلكتروني</a>
+                                            </th>
+                                            <th>
+                                                <a> حالة الحساب</a>
+                                            </th>
+                                            <th>
+                                                <a> أخر عملية دخول</a>
+                                            </th>
+                                            <th v-if="loginDetails.userType==1">
+                                                <a>  منفذ العملية </a>
+                                            </th>
+                                            <th>
+                                                <a> تاريخ الادراج</a>
+                                            </th>
+                                            <th>
+                                                <a> الإعدادات</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in Info">
+                                            <td class="text-sm">{{index+1}} </td>
+                                            <td class="text-sm">
+                                                <div class="d-flex">
+                                                    <img class="avatar avatar-sm me-3" :src="item.image" alt="avatar image">
+                                                    <h6 class="ms-3 my-auto">{{item.name}}</h6>
+                                                </div>
+                                            </td>
+                                            <td class="text-sm">{{item.ownerName}}</td>
+                                            <td class="text-sm">{{item.ownerPhone}}</td>
+                                            <td class="text-sm">{{item.loginName}}</td>
+                                            <td class="text-sm">{{item.phone}}</td>
+                                            <td class="text-sm">{{item.email}}</td>
+                                            <td class="text-sm">
+                                                <el-tag type="danger" v-if="item.level==3">مرفوض </el-tag>
+                                                <el-tag type="success" v-if="item.level==2">نشط</el-tag>
+                                            </td>
+                                            <td class="text-sm" dir="ltr">{{item.lastLoginOn | momentTime}}</td>
+                                            <td class="text-sm" v-if="loginDetails.userType==1">{{item.createdBy}}</td>
+                                            <td class="text-sm">{{item.createdOn | moment}}</td>
+                                            <td class="text-sm">
+                                                <a href="#"
+                                                   title="عرض بيانات المحفظة  "
+                                                   @click.prevent="ViewWalletDiloag(item)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-credit-card text-info" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   class="mx-3"
+                                                   title="تهيئة كلمة المرور "
+                                                   @click.prevent="ResetPassword(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-key text-warning" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   title="ايقاف الحساب"
+                                                   v-if="item.status==1"
+                                                   @click.prevent="DeactivateUser(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-lock text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   title="تفعيل الحساب"
+                                                   v-if="item.status == 2 || item.status==0"
+                                                   @click.prevent="ActivateUser(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-lock-open text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   class="mx-3"
+                                                   @click.prevent="OpentEditDialog(item)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   title="جذف"
+                                                   @click.prevent="Delete(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-trash-o text-danger" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                <el-divider></el-divider>
+                                <div style="text-align: left; margin-left: 50px;margin-top: 20px;">
+                                    ....     Showing
+                                    <span style="font-weight:bold;">{{Info.length}}</span>
+                                    of
+                                    <span style="font-weight:bold;">{{pages}}</span>
+                                </div>
+                                <div style="text-align: center;padding-bottom:11px">
+                                    <el-pagination background
+                                                   layout="prev, pager, next"
+                                                   :current-page="pageNo"
+                                                   :page-size="pageSize"
+                                                   :total="pages"
+                                                   @current-change="GetInfo($event)">
+                                    </el-pagination>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!--Edit Request-->
+                <el-dialog title="تعديل بيانات الشركة "
+                           :visible.sync="EditDialog"
+                           width="60%"
+                           center>
+                    <div class="row">
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm"
+                                 class="multisteps-form__form mb-8">
+
+                            <div class="  p-3 border-radius-xl bg-white js-active"
+                                 data-animation="FadeIn">
+                                <!--<h5 class="font-weight-bolder mb-0">تسجيل بيانات شركة جديدة  </h5>
+                        <p class="mb-0 text-sm" style="margin-top: 7px;">الرجاء التأكد من إدخال جميع البيانات المطلوبة   </p>-->
+
+                                <div class="multisteps-form__content">
+
+                                    <!--Personal Info-->
+                                    <!--<div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                <el-divider content-position="right"><h4>بيانات   الشركة   </h4></el-divider>
+                            </div>-->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <el-form-item label="إسم الشركة " prop="Name">
+                                                <input v-model="ruleForm.Name"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="إسم الشركة ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <el-form-item label=" إسم الدخول للمنصة  " prop="LoginName">
+                                                <input v-model="ruleForm.LoginName"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" إسم الدخول ">
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <el-form-item label="  رقم الهاتف " prop="Phone">
+                                                <input v-model="ruleForm.Phone"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" رقم الهاتف ">
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <el-form-item label="  البريد الإلكتروني " prop="Email">
+                                                <input v-model="ruleForm.Email"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" البريد الإلكتروني ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                <el-divider content-position="right"><h4>بيانات   المدير العام    </h4></el-divider>
+                            </div>-->
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <el-form-item label="الإسم رباعي" prop="OwnerName">
+                                                <input v-model="ruleForm.OwnerName"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="الإسم رباعي">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <el-form-item label=" رقم الهاتف " prop="OwnerPhone">
+                                                <input v-model="ruleForm.OwnerPhone"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="  رقم الهاتف ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                <el-divider content-position="right"><h4>بيانات   عنوان الشركة     </h4></el-divider>
+                            </div>-->
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <el-form-item label="  شرح تفصيلي عن الموقع  " prop="LocationDescriptions">
+                                                <input v-model="ruleForm.LocationDescriptions"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" شرح تفصيلي عن الموقع ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <el-form-item label=" رابط الكتروني للموقع" prop="LocationLink">
+                                                <input v-model="ruleForm.LocationLink"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="    Google Map Link ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد الطوابق " prop="FloorCount">
+                                                <input v-model="ruleForm.FloorCount"
+                                                       style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder=" عدد الطوابق">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد القاعات الدراسية  " prop="ClassRoomCount">
+                                                <input v-model="ruleForm.ClassRoomCount"
+                                                       style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد القاعات الدراسية ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد قاعات الاجتماعات   " prop="MeetingRoomCount">
+                                                <input v-model="ruleForm.MeetingRoomCount"
+                                                       style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد قاعات الاجتماعات ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد غرف التدريب    " prop="TraningRoomCount">
+                                                <input v-model="ruleForm.TraningRoomCount"
+                                                       style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد غرف التدريب  ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <el-form-item label="  عدد المكاتب الخاصة   " prop="PrivateRoomCount">
+                                                <input v-model="ruleForm.PrivateRoomCount"
+                                                       style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد المكاتب الخاصة    ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <el-form-item label="  عدد المكاتب " prop="OfficeCount">
+                                                <input v-model="ruleForm.OfficeCount"
+                                                       style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder=" عدد المكاتب">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+
+                                    <!--Cotact Info-->
+                                    <!--<div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                <el-divider content-position="right"><h4> المرفقات     </h4></el-divider>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <el-form-item>
+                                        <el-upload action="#"
+                                                   :on-change="SelectCoverAttachment"
+                                                   list-type="picture-card"
+                                                   :auto-upload="false">
+                                            <i slot="default" class="el-icon-plus"></i>
+                                            <div slot="file" slot-scope="{file}">
+                                                <img class="el-upload-list__item-thumbnail"
+                                                     :src="file.url" alt="">
+                                                <span class="el-upload-list__item-actions">
+                                                    <span class="el-upload-list__item-preview"
+                                                          style="margin-left:15px"
+                                                          @click="handlePictureCardPreview(file)">
+                                                        <i class="el-icon-zoom-in"></i>
+                                                    </span>
+                                                    <span v-if="!disabled"
+                                                          class="el-upload-list__item-delete"
+                                                          @click="handleDownload(file)">
+                                                        <i class="el-icon-download"></i>
+                                                    </span>
+                                                    <span v-if="!disabled"
+                                                          class="el-upload-list__item-delete"
+                                                          @click="handleRemove(file)">
+                                                        <i class="el-icon-delete"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </el-upload>
+                                    </el-form-item>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <el-dialog :visible.sync="dialogVisible">
+                                        <img width="100%" :src="dialogImageUrl" alt="">
+                                    </el-dialog>
+                                </div>
+                            </div>-->
+                                    <!--Note Info-->
+                                    <div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                        <el-divider content-position="right"><h4>ملاحظات أخري يمكن الاستفادة منها   </h4></el-divider>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12">
+                                            <el-form-item prop="Notes">
+                                                <el-input :rows="4" type="textarea" v-model="ruleForm.Notes"
+                                                          placeholder="الملاحظات">
+                                                </el-input>
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!--Button Info-->
+                                    <div class="row" style="margin-top:25px">
+                                        <div class="col-12 col-sm-12" style="text-align:left">
+                                            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
+                                                    title="Next"
+                                                    @click.prevent="submitEditForm('ruleForm')">
+                                                تعديل البيانات
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </el-form>
+                    </div>
+                </el-dialog>
+
+
+
+
+
+            </div>
+
+
+
+
+            <div class="card" v-if="state==1">
+
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="mb-0">بيانات المحفظة الإلكترونية   </h5>
+                            <p class="text-sm mb-0">
+                                اسم الشركة : {{SelectedItem.name}} || رقم الهاتف : 0{{SelectedItem.phone}}
+                            </p>
+                        </div>
+                        <div class="ms-auto my-auto mt-lg-0 mt-4">
+                            <div class="ms-auto my-auto">
+                                <button style="
+                                    margin-left: 5px;"
+                                        type="button"
+                                        class="btn btn-outline-primary btn-sm mb-0"
+                                        @click.prevent="OpenAddValueDiloag()"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#import">
+                                    شحن المحفظة الإلكترونية
+                                </button>
+                                <button @click.prevent="state=0" style=" margin-left: 5px;" type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
+                                    رجوع
+                                    &nbsp;
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="card-body">
+                    <!--statistic Info-->
+                    <div class="row  mt-3" style="padding:20px;">
+                        <div class="col-lg-4 col-6 text-center">
+                            <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                                <h6 class="text-primary mb-0">قيمة المحفظة</h6>
+                                <h4 class="font-weight-bolder"><span class="small">{{SelectedItem.walletValue}} د.ل</span><span id="state1" countTo="23980"></span></h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-6 text-center">
+                            <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                                <h6 class="text-primary mb-0">عدد الحركات </h6>
+                                <h4 class="font-weight-bolder"><span class="small">{{Wallet.length}}</span><span id="state2" countTo="2400"></span></h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-6 text-center mt-4 mt-lg-0">
+                            <div class="border-dashed border-1 border-secondary border-radius-md py-3">
+                                <h6 class="text-primary mb-0">عدد الاشتراكات </h6>
+                                <h4 class="font-weight-bolder"><span class="small">{{WalletPurchases.length}} </span><span id="state3" countTo="48"></span></h4>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row" style="padding:20px">
+
+                        <div class="card-header pb-0">
+                            <div class="d-lg-flex">
+                                <div>
+                                    <h5 class="mb-0"> الحركات الخاصة بالمحفظة   </h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <el-alert v-if="Wallet==0"
+                                  title="لاتوجد بيانات في الوقت الحالي"
+                                  type="info"
+                                  :closable="false"
+                                  show-icon style="font-size: 20px !important; margin-top: 25px;
+                                        margin-bottom: 25px; width: 96%; margin-right: 2%; ">
+                        </el-alert>
+                        <div class="col-lg-12 col-md-6 col-12" style="overflow: auto;" v-if="Wallet!=0">
+                            <div class="dataTable-container">
+                                <table class="table table-flush dataTable-table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">نوع العملية</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">القيمة</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">طريقة الدفع</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">تاريخ العملية</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">منفذ العملية</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">الاعدادات</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in Wallet">
+                                            <td class="text-sm">{{index+1}}</td>
+                                            <td>
+                                                <span class="badge badge-success badge-sm" v-if="item.processType==1">ReCharge</span>
+                                                <span class="badge badge-danger badge-sm" v-if="item.processType!=1">Withdraw</span>
+                                            </td>
+                                            <td class="text-sm">{{item.value}}</td>
+                                            <td>
+                                                <span class="badge badge-success badge-sm" v-if="item.paymentMethodId==1">نقدي</span>
+                                                <span class="badge badge-warning badge-sm" v-if="item.paymentMethodId!=1"> كرت دفع مسبق</span>
+                                            </td>
+                                            <td class="text-sm">{{item.createdOn | moment}}</td>
+                                            <td class="text-sm">{{item.createdBy}}</td>
+                                            <td class="text-sm">
+                                                <a href="#"
+                                                   v-if="loginDetails.userType==1"
+                                                   @click.prevent="DeleteTransacitons(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Delete product">
+                                                    <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+
+                        <div class="card-header pb-0">
+                            <div class="d-lg-flex">
+                                <div>
+                                    <h5 class="mb-0"> الاشتراكات وعمليات الدفع   </h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <el-alert v-if="WalletPurchases==0"
+                                  title="لاتوجد بيانات في الوقت الحالي"
+                                  type="info"
+                                  :closable="false"
+                                  show-icon style="font-size: 20px !important; margin-top: 25px;
+                                        margin-bottom: 25px; width: 96%; margin-right: 2%; ">
+                        </el-alert>
+                        <div class="col-lg-12 col-md-6 col-12" style="overflow: auto;" v-if="WalletPurchases!=0">
+                            <div class="dataTable-container">
+                                <table class="table table-flush dataTable-table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">الباقة</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">تاريخ البداية</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">تاريخ النهاية</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">قيمة  الباقة</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">المدفوع</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">تاريخ العملية</a>
+                                            </th>
+                                            <th>
+                                                <a href="#">منفذ العملية</a>
+                                            </th>
+                                            <!--<th>
+                            <a href="#">الاعدادات</a>
+                        </th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in WalletPurchases">
+                                            <td class="text-sm">{{index+1}}</td>
+                                            <td class="text-sm">{{item.name}}</td>
+                                            <td class="text-sm">{{item.start | moment}}</td>
+                                            <td class="text-sm">{{item.end | moment}}</td>
+                                            <td class="text-sm">{{item.subscriptionsPrice}}</td>
+                                            <td class="text-sm">{{item.value}}</td>
+                                            <td class="text-sm">{{item.createdOn | moment}}</td>
+                                            <td class="text-sm">{{item.createdBy}}</td>
+                                            <!--<td class="text-sm">
+                            <a href="#"
+                               @click.prevent="Delete(item.id)"
+                               data-bs-toggle="tooltip"
+                               data-bs-original-title="Delete product">
+                                <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+                            </a>
+                        </td>-->
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- Add Value Wallet Diloag -->
+                <el-dialog title="شحن المحفظة الالكترونية"
+                           :visible.sync="AddValueDiloag">
+
+                    <el-form :model="WalletruleForm"
+                             :rules="Walletrules"
+                             ref="WalletruleForm"
+                             class="multisteps-form__form mb-8"
+                             style="height: auto; padding: 20px">
+
+
+
+
+                        <div class="row mt-3">
+                            <div class="col-12 col-sm-6">
+                                <el-form-item label="طريقة الدفع " prop="PaymentMethodId">
+                                    <el-select v-model="WalletruleForm.PaymentMethodId"
+                                               filterable placeholder="طريقة الدفع ">
+                                        <el-option v-for="item in PaymentMethods"
+                                                   :key="item.id"
+                                                   :label="item.name"
+                                                   :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <el-form-item label="القيمة" prop="Value">
+                                    <input v-model="WalletruleForm.Value"
+                                           class="multisteps-form__input form-control"
+                                           type="number"
+                                           placeholder="القيمة"
+                                           onfocus="focused(this)" onfocusout="defocused(this)">
+                                </el-form-item>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row mt-3">
+                            <div class="col-12 col-sm-12">
+                                <div class="button-row d-flex mt-4">
+                                    <button class="btn bg-gradient-primary ms-auto mb-0 js-btn-next"
+                                            type="button"
+                                            style="margin-top:10px"
+                                            @click.prevent="submitWalletruleForm('WalletruleForm')"
+                                            title="Next">
+                                        اضافة القيمة
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </el-form>
+
+
+                </el-dialog>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

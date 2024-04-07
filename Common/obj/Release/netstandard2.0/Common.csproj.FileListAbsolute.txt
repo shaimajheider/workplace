@@ -1,0 +1,89 @@
+C:\smart-eductaion\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\smart-eductaion\Common\bin\Release\netstandard2.0\Common.dll
+C:\smart-eductaion\Common\bin\Release\netstandard2.0\Common.pdb
+C:\smart-eductaion\Common\obj\Release\netstandard2.0\Common.csprojAssemblyReference.cache
+C:\smart-eductaion\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\smart-eductaion\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\smart-eductaion\Common\obj\Release\netstandard2.0\Common.dll
+C:\smart-eductaion\Common\obj\Release\netstandard2.0\Common.pdb
+C:\MinistryEducation\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\MinistryEducation\Common\bin\Release\netstandard2.0\Common.dll
+C:\MinistryEducation\Common\bin\Release\netstandard2.0\Common.pdb
+C:\MinistryEducation\Common\obj\Release\netstandard2.0\Common.csprojAssemblyReference.cache
+C:\MinistryEducation\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\MinistryEducation\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\MinistryEducation\Common\obj\Release\netstandard2.0\Common.dll
+C:\MinistryEducation\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Candidate\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Candidate\Common\bin\Release\netstandard2.0\Common.dll
+C:\Candidate\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Candidate\Common\obj\Release\netstandard2.0\Common.csprojAssemblyReference.cache
+C:\Candidate\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Candidate\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Candidate\Common\obj\Release\netstandard2.0\Common.dll
+C:\Candidate\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Candidate\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\bin\Release\netstandard2.0\Common.dll
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.csprojAssemblyReference.cache
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.dll
+C:\Users\Abdala Alameer\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Users\HNEC\source\repos\VoterCards\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Users\HNEC\source\repos\VoterCards\Common\bin\Release\netstandard2.0\Common.dll
+C:\Users\HNEC\source\repos\VoterCards\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Users\HNEC\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.csprojAssemblyReference.cache
+C:\Users\HNEC\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Users\HNEC\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Users\HNEC\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.dll
+C:\Users\HNEC\source\repos\VoterCards\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Projects\ScreenControlV2\ScreenControl\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Projects\ScreenControlV2\ScreenControl\Common\bin\Release\netstandard2.0\Common.dll
+C:\Projects\ScreenControlV2\ScreenControl\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Projects\ScreenControlV2\ScreenControl\Common\obj\Release\netstandard2.0\Common.csprojAssemblyReference.cache
+C:\Projects\ScreenControlV2\ScreenControl\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Projects\ScreenControlV2\ScreenControl\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Projects\ScreenControlV2\ScreenControl\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Projects\ScreenControlV2\ScreenControl\Common\obj\Release\netstandard2.0\Common.dll
+C:\Projects\ScreenControlV2\ScreenControl\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\bin\Release\netstandard2.0\Common.dll
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.csproj.AssemblyReference.cache
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.dll
+C:\Users\Ahmed Tareck\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\bin\Release\netstandard2.0\Common.dll
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.dll
+C:\Users\HP\Desktop\Ahmed\FrontLine\Estbian\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\bin\Release\netstandard2.0\Common.dll
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\obj\Release\netstandard2.0\Common.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\obj\Release\netstandard2.0\Common.dll
+C:\Users\HP\Desktop\Ahmed\Tranim\TraneemPlatform\Common\obj\Release\netstandard2.0\Common.pdb
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\bin\Release\netstandard2.0\Common.deps.json
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\bin\Release\netstandard2.0\Common.dll
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\bin\Release\netstandard2.0\Common.pdb
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\obj\Release\netstandard2.0\Common.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\obj\Release\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\obj\Release\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\obj\Release\netstandard2.0\Common.AssemblyInfo.cs
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\obj\Release\netstandard2.0\Common.dll
+C:\Users\HP\Desktop\Ahmed\Private\LOTI\Common\obj\Release\netstandard2.0\Common.pdb

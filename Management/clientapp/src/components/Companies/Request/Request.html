@@ -1,0 +1,174 @@
+﻿<div class="container-fluid py-4" dir="rtl">
+    <div class="row" >
+        <div class="col-12">
+
+            <div class="card" v-if="state==0">
+                <!-- Card header -->
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="font-weight-bolder mb-0">إدارة بيانات  الشركات || طلبات الانظام  </h5>
+                            <p class="mb-0 text-sm" style="margin-top: 7px;">قائمة بجميع بطلبات الانظام   المسجلة  داخل النظام  </p>
+                        </div>
+                        <div class="ms-auto my-auto mt-lg-0 mt-4">
+                            <div class="ms-auto my-auto">
+
+                                <button style="margin: 10px;" type="button" @click="Refresh()"
+                                        class="btn btn-outline-warning btn-sm mb-0">
+                                    تحديث
+                                </button>
+
+                                <!--<button style="margin: 10px;" type="button" @click="Print()"
+                                class="btn btn-outline-success btn-sm mb-0">
+                            طباعة البيانات
+                        </button>-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row mt-3 px-3">
+                    <div class="col-md-11"></div>
+                    <div class="col-md-1">
+                        <div class="dataTable-top" style="margin-top:23px">
+                            <el-select v-model="pageSize"
+                                       @change="GetInfo()"
+                                       filterable
+                                       style=" width: 130%;">
+                                <el-option v-for="item in [{id:5,name:'5'},
+                                                           {id:10,name:'10'},
+                                                           {id:20,name:'20'},
+                                                           {id:40,name:'40'},
+                                                           {id:80,name:'80'},
+                                                           {id:100,name:'100'},
+                                                           {id:200,name:'200'},
+                                           ]"
+                                           :key="item.id"
+                                           :label="item.name"
+                                           :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--{{Info}}-->
+                <el-alert style="margin-top:40px"
+                          v-if="Info==0"
+                          title="عذرا لاتــوجد بيـــانـــات لـعـرضــهــا !!!"
+                          type="info"
+                          center
+                          :closable="false"
+                          show-icon>
+                </el-alert>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                            <div class="dataTable-container" v-if="Info!=0">
+                                <table class="table table-flush dataTable-table" id="products-list">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a>  إسم الشركة وشعارها  </a>
+                                            </th>
+                                            <th>
+                                                <a>  إسم مدير الشركة  </a>
+                                            </th>
+                                            <th>
+                                                <a> رقم هاتف مدير الشركة </a>
+                                            </th>
+                                            <th>
+                                                <a> إسم الدخول  </a>
+                                            </th>
+                                            <th>
+                                                <a> رقم الهاتف   </a>
+                                            </th>
+                                            <th>
+                                                <a> البريد الإلكتروني</a>
+                                            </th>
+                                            <th>
+                                                <a> تاريخ تقديم الطلب</a>
+                                            </th>
+                                            <th>
+                                                <a> الإعدادات</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in Info">
+                                            <td class="text-sm">{{index+1}} </td>
+                                            <td class="text-sm">
+                                                <div class="d-flex">
+                                                    <img class="avatar avatar-sm me-3" :src="item.image" alt="avatar image">
+                                                    <h6 class="ms-3 my-auto">{{item.name}}</h6>
+                                                </div>
+                                            </td>
+                                            <td class="text-sm">{{item.ownerName}}</td>
+                                            <td class="text-sm">{{item.ownerPhone}}</td>
+                                            <td class="text-sm">{{item.loginName}}</td>
+                                            <td class="text-sm">{{item.phone}}</td>
+                                            <td class="text-sm">{{item.email}}</td>
+                                            <td class="text-sm">{{item.createdOn | moment}}</td>
+                                            <td class="text-sm">
+                                                <a href="#"
+                                                   title=" رفض"
+                                                   @click.prevent="Deactivate(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-ban text-danger" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                      class="mx-3"
+                                                   title="الموافقة  "
+                                                   @click.prevent="Activate(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i>
+                                                </a>
+
+                                                <a href="#"
+                                                   title="جذف"
+                                                   @click.prevent="Delete(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-trash-o text-danger" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                <el-divider></el-divider>
+                                <div style="text-align: left; margin-left: 50px;margin-top: 20px;">
+                                    ....     Showing
+                                    <span style="font-weight:bold;">{{Info.length}}</span>
+                                    of
+                                    <span style="font-weight:bold;">{{pages}}</span>
+                                </div>
+                                <div style="text-align: center;padding-bottom:11px">
+                                    <el-pagination background
+                                                   layout="prev, pager, next"
+                                                   :current-page="pageNo"
+                                                   :page-size="pageSize"
+                                                   :total="pages"
+                                                   @current-change="GetInfo($event)">
+                                    </el-pagination>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

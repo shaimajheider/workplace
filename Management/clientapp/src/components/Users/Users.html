@@ -1,0 +1,523 @@
+﻿<div class="container-fluid py-4" dir="rtl">
+    <div class="row" >
+        <div class="col-12">
+            
+            
+            <div class="card" v-if="state==0">
+                <!-- Card header -->
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="font-weight-bolder mb-0">إدارة بيانات  المستخدمين </h5>
+                            <p class="mb-0 text-sm" style="margin-top: 7px;">قائمة بجميع المستخدمين المعتمدين  داخل النظام  </p>
+                        </div>
+                        <div class="ms-auto my-auto mt-lg-0 mt-4">
+                            <div class="ms-auto my-auto">
+
+                                <button style="margin: 10px;" type="button" @click="Refresh()"
+                                        class="btn btn-outline-warning btn-sm mb-0">
+                                    تحديث
+                                </button>
+
+                                <button style="margin: 10px;"
+                                        type="button"
+                                        @click="OpenAddDialog()"
+                                        v-if="loginDetails.userType == 1"
+                                        class="btn btn-outline-primary btn-sm mb-0">
+                                    إضافة مستخدم جديد
+                                </button>
+                                <!--<button style="margin: 10px;" type="button" @click="Print()"
+                            class="btn btn-outline-success btn-sm mb-0">
+                        طباعة البيانات
+                    </button>-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row mt-3 px-3">
+                    <!--<div class="col-md-3" v-if="loginDetails.userType == 1">
+                        <div class="form-group bmd-form-group">
+                            <label> فلترة  بالمنفذ  </label>
+                            <el-select style="width: 100%;"
+                                       v-model="PortId"
+                                       filterable
+                                       placeholder="المنفذ"
+                                       @change="GetInfo()">
+                                <el-option v-for="item in Ports"
+                                           :key="item.id"
+                                           :label="item.name"
+                                           :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div>-->
+                    
+                    <div class="col-md-11"></div>
+                    <div class="col-md-1">
+                        <div class="dataTable-top" style="margin-top:23px">
+                            <el-select v-model="pageSize"
+                                       @change="GetInfo()"
+                                       filterable
+                                       style=" width: 130%;">
+                                <el-option v-for="item in [{id:5,name:'5'},
+                                                           {id:10,name:'10'},
+                                                           {id:20,name:'20'},
+                                                           {id:40,name:'40'},
+                                                           {id:80,name:'80'},
+                                                           {id:100,name:'100'},
+                                                           {id:200,name:'200'},
+                                           ]"
+                                           :key="item.id"
+                                           :label="item.name"
+                                           :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--{{Info}}-->
+                <el-alert style="margin-top:40px"
+                          v-if="Info==0"
+                          title="عذرا لاتــوجد بيـــانـــات لـعـرضــهــا !!!"
+                          type="info"
+                          center
+                          :closable="false"
+                          show-icon>
+                </el-alert>
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+                        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                            <div class="dataTable-container" v-if="Info!=0">
+                                <table class="table table-flush dataTable-table" id="products-list">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a>  الإسم </a>
+                                            </th>
+                                            <th>
+                                                <a>  إسم الدخول</a>
+                                            </th>
+                                            <th>
+                                                <a> رقم الهاتف</a>
+                                            </th>
+                                            <th>
+                                                <a> البريد الإلكتروني</a>
+                                            </th>
+                                            <th>
+                                                <a> نوع الحساب</a>
+                                            </th>
+                                            <th>
+                                                <a>  المنفذ</a>
+                                            </th>
+                                            <th>
+                                                <a> حالة الحساب</a>
+                                            </th>
+                                            <th>
+                                                <a> أخر عملية دخول</a>
+                                            </th>
+                                            <th>
+                                                <a>  منفذ العملية </a>
+                                            </th>
+                                            <th>
+                                                <a> تاريخ الادراج</a>
+                                            </th>
+                                            <th>
+                                                <a> الإعدادات</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in Info">
+                                            <td class="text-sm">{{index+1}} </td>
+                                            <td class="text-sm">
+                                                <div class="d-flex">
+                                                    <img class="avatar avatar-sm me-3" :src="item.image" alt="avatar image">
+                                                    <h6 class="ms-3 my-auto">{{item.name}}</h6>
+                                                </div>
+                                            </td>
+                                            <td class="text-sm">{{item.loginName}}</td>
+                                            <td class="text-sm">{{item.phone}}</td>
+                                            <td class="text-sm">{{item.email}}</td>
+                                            <td class="text-sm">
+                                                <el-tag type="success" v-if="item.userType==1">مدير</el-tag>
+                                                <el-tag type="warning" v-if="item.userType==2">موظف لجهة</el-tag>
+                                                <!--<el-tag type="danger" v-if="item.userType==3">مراقب</el-tag>-->
+                                            </td>
+                                            <td class="text-sm">
+                                                <el-tag type="info" v-if="item.port"> {{item.port}}</el-tag>
+                                                <el-tag type="info" v-if="!item.port"> لا يوجد</el-tag>
+                                            </td>
+                                            <td class="text-sm">
+                                                <el-tag type="success" v-if="item.status==1">نشط</el-tag>
+                                                <el-tag type="warning" v-if="item.status==2">موقوف </el-tag>
+                                            </td>
+                                            <td class="text-sm" dir="ltr">{{item.lastLoginOn | momentTime}}</td>
+                                            <td class="text-sm">{{item.createdBy}}</td>
+                                            <td class="text-sm">{{item.createdOn | moment}}</td>
+                                            <td class="text-sm">
+                                                <a href="#"
+                                                   class="mx-3"
+                                                   title="تهيئة كلمة المرور "
+                                                   @click.prevent="ResetPassword(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-key text-warning" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   title="ايقاف الحساب"
+                                                   v-if="item.status==1"
+                                                   @click.prevent="DeactivateUser(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-lock text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   title="تفعيل الحساب"
+                                                   v-if="item.status == 2 || item.status==0"
+                                                   @click.prevent="ActivateUser(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-lock-open text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   class="mx-3"
+                                                   @click.prevent="OpentEditDialog(item)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-pencil-square-o text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   title="جذف"
+                                                   @click.prevent="Delete(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fa fa-trash-o text-danger" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                <el-divider></el-divider>
+                                <div style="text-align: left; margin-left: 50px;margin-top: 20px;">
+                                    ....     Showing
+                                    <span style="font-weight:bold;">{{Info.length}}</span>
+                                    of
+                                    <span style="font-weight:bold;">{{pages}}</span>
+                                </div>
+                                <div style="text-align: center;padding-bottom:11px">
+                                    <el-pagination background
+                                                   layout="prev, pager, next"
+                                                   :current-page="pageNo"
+                                                   :page-size="pageSize"
+                                                   :total="pages"
+                                                   @current-change="GetInfo($event)">
+                                    </el-pagination>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!--Edit Request-->
+                <el-dialog title="تعديل بيانات مستخدم "
+                           :visible.sync="EditDialog"
+                           width="60%"
+                           center>
+                    <div class="row">
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm" style=" text-align: right;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group bmd-form-group">
+                                        <el-form-item label="الإسم  " prop="Name">
+                                            <input class="form-control"
+                                                   placeholder="الإسم "
+                                                   v-model="ruleForm.Name"
+                                                   name="con_name" type="text">
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group bmd-form-group">
+                                        <el-form-item label="اسم الدخول" prop="LoginName">
+                                            <input class="form-control"
+                                                   placeholder="اسم الدخول"
+                                                   v-model="ruleForm.LoginName"
+                                                   name="con_name" type="text">
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group bmd-form-group">
+                                        <el-form-item label="رقم  الهاتف  " prop="Phone">
+                                            <input class="form-control"
+                                                   placeholder="رقم  الهاتف"
+                                                   v-model="ruleForm.Phone"
+                                                   name="con_name" type="text">
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group bmd-form-group">
+                                        <el-form-item label="البريد الإلكتروني  " prop="Email">
+                                            <input class="form-control"
+                                                   placeholder="البريد الإلكتروني"
+                                                   v-model="ruleForm.Email"
+                                                   name="con_name" type="email">
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group bmd-form-group">
+                                        <el-form-item label="الصفة الوظيفية" prop="UserType">
+                                            <el-select style="width: 100%;"
+                                                       v-model="ruleForm.UserType"
+                                                       filterable
+                                                       placeholder="الصفة الوظيفية">
+                                                <el-option v-for="item in [{id:1,name:'مـدير النظام'},{id:2,name:'موظــف لجهة'}
+                                                           ]"
+                                                           :key="item.id"
+                                                           :label="item.name"
+                                                           :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2" v-if="ruleForm.UserType==2">
+                                    <div class="form-group align-right">
+                                        <el-form-item label="المنفذ" prop="PortId">
+                                            <el-select style="width: 100%;"
+                                                       v-model="ruleForm.PortId"
+                                                       filterable
+                                                       placeholder="المنفذ">
+                                                <el-option v-for="item in Ports"
+                                                           :key="item.id"
+                                                           :label="item.name"
+                                                           :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" v-if="ruleForm.UserType==2">
+                                </div>
+                                <div class="col-md-3" v-if="ruleForm.UserType==2">
+                                </div>
+                                <div class="col-md-8" v-if="ruleForm.UserType!=2 || !ruleForm.UserType">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group bmd-form-group pull-left" style="float:left;margin-top:45px">
+                                        <button class="btn btn-info" @click.prevent="submitEditForm('ruleForm')"> حفظ البيانات</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </el-form>
+                    </div>
+
+                </el-dialog>
+
+
+
+            </div>
+        
+
+
+
+
+
+
+
+
+
+        
+        
+        
+            <div class="card" v-if="state==1">
+                <!-- Card header -->
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="font-weight-bolder mb-0">إدارة بيانات  المستخدمين </h5>
+                            <p class="mb-0 text-sm" style="margin-top: 7px;">قائمة بجميع المستخدمين المعتمدين  داخل النظام  </p>
+                        </div>
+                        <div class="ms-auto my-auto mt-lg-0 mt-4">
+                            <div class="ms-auto my-auto">
+
+                                <button style="margin: 10px;" type="button" @click="Back()"
+                                        class="btn btn-outline-warning btn-sm mb-0">
+                                    رجوع
+                                </button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="card-body">
+                    <el-form :model="ruleForm"
+                             :rules="rules"
+                             ref="ruleForm" style=" text-align: right;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group">
+                                    <el-form-item label="الإسم  " prop="Name">
+                                        <input class="form-control"
+                                               placeholder="الإسم "
+                                               v-model="ruleForm.Name"
+                                               name="con_name" type="text">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group">
+                                    <el-form-item label="اسم الدخول" prop="LoginName">
+                                        <input class="form-control"
+                                               placeholder="اسم الدخول"
+                                               v-model="ruleForm.LoginName"
+                                               name="con_name" type="text">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group">
+                                    <el-form-item label="رقم  الهاتف  " prop="Phone">
+                                        <input class="form-control"
+                                               placeholder="رقم  الهاتف"
+                                               v-model="ruleForm.Phone"
+                                               name="con_name" type="text">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group">
+                                    <el-form-item label="البريد الإلكتروني  " prop="Email">
+                                        <input class="form-control"
+                                               placeholder="البريد الإلكتروني"
+                                               v-model="ruleForm.Email"
+                                               name="con_name" type="email">
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group">
+                                    <el-form-item label="الرقم السري  " prop="Password">
+                                        <input class="form-control"
+                                               placeholder="الرقم السري"
+                                               v-model="ruleForm.Password"
+                                               name="con_name" type="password">
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group bmd-form-group">
+                                    <el-form-item label="تأكيد الرقم السري  " prop="ConfimPassword">
+                                        <input class="form-control"
+                                               placeholder="تأكيد الرقم السري"
+                                               v-model="ruleForm.ConfimPassword"
+                                               name="con_name" type="password">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group bmd-form-group">
+                                    <el-form-item label="الصفة الوظيفية" prop="UserType">
+                                        <el-select style="width: 100%;"
+                                                   v-model="ruleForm.UserType"
+                                                   filterable
+                                                   placeholder="الصفة الوظيفية">
+                                            <el-option v-for="item in [{id:1,name:'مـدير النظام'},{id:2,name:'مــوظف لجهة'}]"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+
+                                </div>
+
+
+                            </div>
+                            
+                            <div class="col-md-2" v-if="ruleForm.UserType==2">
+                                <div class="form-group align-right">
+                                    <el-form-item label="المنفذ" prop="PortId">
+                                        <el-select style="width: 100%;"
+                                                   v-model="ruleForm.PortId"
+                                                   filterable
+                                                   placeholder="المنفذ">
+                                            <el-option v-for="item in Ports"
+                                                       :key="item.id"
+                                                       :label="item.name"
+                                                       :value="item.id">
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-md-3" v-if="ruleForm.UserType==2">
+                            </div>
+                            <div class="col-md-3" v-if="ruleForm.UserType==2">
+                            </div>
+                            <div class="col-md-8" v-if="ruleForm.UserType!=2 || !ruleForm.UserType">
+
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group bmd-form-group pull-left" style="float:left;margin-top:45px">
+                                    <button class="btn btn-info"
+                                            @click.prevent="submitForm('ruleForm')">
+                                        إضافة المستخدم
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </el-form>
+                </div>
+
+
+
+
+            </div>
+        
+        
+        
+        </div>
+    </div>
+</div>

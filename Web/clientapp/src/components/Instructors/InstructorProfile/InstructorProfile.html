@@ -1,0 +1,267 @@
+﻿
+
+
+
+<div dir="rtl">
+
+
+    <a class="close_side_menu" href="javascript:void(0);"></a>
+    <div class="rbt-page-banner-wrapper">
+        <!-- Start Banner BG Image  -->
+        <div class="rbt-banner-image"></div>
+        <!-- End Banner BG Image  -->
+    </div>
+    <!-- Start Card Style -->
+    <div class="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Start Dashboard Top  -->
+                    <div class="rbt-dashboard-content-wrapper">
+                        <div class="tutor-bg-photo bg_image bg_image--22 height-350">
+                            <!-- <img src="assets/images/bg/bg-image-22.jpg" alt=""> -->
+                        </div>
+                        <!-- Start Tutor Information  -->
+                        <div class="rbt-tutor-information">
+                            <div class="rbt-tutor-information-left">
+                                <div class="thumbnail rbt-avatars size-lg">
+                                    <img :src="ServerUrl+Info.imagePath" alt="Instructor" v-if="Info.imagePath">
+                                    <img src="assets/images/image/DefaultInstracture.jpg" alt="Instructor" v-if="!Info.imagePath">
+                                </div>
+                                <div class="tutor-content">
+                                    <h5 class="title">{{Info.name}}</h5>
+                                    <div class="rbt-review" v-if="Info.acountRate">
+                                        <div class="rating" v-if="Info.acountRate==5">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        </div>
+                                        <div class="rating" v-if="Info.acountRate==4">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        </div>
+                                        <div class="rating" v-if="Info.acountRate==3">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        </div>
+                                        <div class="rating" v-if="Info.acountRate==2">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        </div>
+                                        <div class="rating" v-if="Info.acountRate==1">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        </div>
+                                        <span class="rating-count"> ({{Info.acountRate}} Reviews)</span>
+                                    </div>
+                                    <div class="rbt-review" v-if="!Info.acountRate">
+                                        <div class="rating" >
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                        </div>
+                                        <span class="rating-count"> (0 Reviews)</span>
+                                    </div>
+                                    <ul class="rbt-meta rbt-meta-white mt--5">
+                                        <li dir="ltr"> عدد الدورات التدريبية : {{Courses.length}}  <i class="feather-file"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Tutor Information  -->
+                    </div>
+                    <!-- End Dashboard Top  -->
+                </div>
+                <div class="col-lg-12 mt--30">
+                    <div class="profile-content rbt-shadow-box">
+                        <h4 class="rbt-title-style-3">نبذة عن المدرب</h4>
+                        <div class="row g-5">
+                            <div class="col-lg-8">
+                                <p class="mt--10 mb--20">
+
+                                    {{Info.aboutMe}}
+                                </p>
+                                <ul class="social-icon social-default justify-content-start">
+                                    <li>
+                                        <a href="Facebock">
+                                            <i class="feather-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="Instagram">
+                                            <i class="feather-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather-linkedin"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="rbt-information-list mt--15" style="direction: ltr; float: right;">
+                                    <li>
+                                        <a href="#">{{TraneemPhone}} <i class="feather-phone"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="TraneemEmail">{{TraneemEmail}} <i class="feather-mail"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 offset-lg-2">
+                                <div class="feature-sin best-seller-badge text-end h-100">
+                                    <span class="rbt-badge-2 w-100 text-center badge-full-height">
+                                        <span class="image"><img src="assets/images/icons/card-icon-1.png" alt="Best Seller Icon"></span>مدرب معتمد
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Start Card Area -->
+            <div class="rbt-section-overlayping-top rbt-section-gapBottom" dir="rtl" v-if="Courses!=0" style=" margin-top: 50px;">
+                <div class="inner">
+                    <div class="container">
+                        <div class="rbt-course-grid-column">
+
+                            <!-- Start Single Card  -->
+                            <div class="course-grid-3" v-for="item,index in Courses">
+                                <div class="rbt-card variation-01 rbt-hover">
+                                    <div class="rbt-card-img">
+                                        <a href="course-details.html">
+                                            <img :src="ServerUrl+item.covePhotoPath" alt="Card image">
+                                        </a>
+                                    </div>
+                                    <div class="rbt-card-body">
+                                        <div class="rbt-card-top">
+                                            <div class="rbt-review">
+                                                <div class="rating" v-if="item.rate==5">
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                </div>
+                                                <div class="rating" v-if="item.rate==4">
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                </div>
+                                                <div class="rating" v-if="item.rate==3">
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                </div>
+                                                <div class="rating" v-if="item.rate==2">
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                </div>
+                                                <div class="rating" v-if="item.rate==1">
+                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                </div>
+                                                <span class="rating-count"> ({{item.rateCount}} Reviews)</span>
+                                            </div>
+                                            <div class="rbt-bookmark-btn">
+                                                <a class="rbt-round-btn" title="Bookmark" href="#">
+                                                    <i class="feather-bookmark"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <h4 class="rbt-card-title">
+                                            <a href="#">{{item.name}}</a>
+                                        </h4>
+                                        <ul class="rbt-meta">
+                                            <li dir="ltr">{{item.subject.name}}  <i class="feather-book"></i></li>
+                                            <li dir="ltr">{{item.academicSpecialization.name}}  <i class="feather-award"></i></li>
+                                            <li dir="ltr"> عدد الشباتر : {{item.shapterCount}}  <i class="feather-file"></i></li>
+                                        </ul>
+
+                                        <p class="rbt-card-text">
+                                            {{item.descriptions}}
+                                        </p>
+                                        <div class="rbt-author-meta mb--10">
+                                            <div class="rbt-avater">
+                                                <a href="#">
+                                                    <img :src="ServerUrl+item.instructor.imagePath" alt="Sophia Jaymes">
+                                                </a>
+                                            </div>
+                                            <div class="rbt-author-info">
+                                                الاستاذ   <a href="#">{{item.instructor.name}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="rbt-card-bottom">
+                                            <div class="rbt-price">
+                                                <span class="current-price" v-if="!item.isFree">{{item.price}} د.ل</span>
+                                                <span class="current-price" v-if="item.isFree">
+                                                    <span class="rbt-badge" style="background-color: lightgreen;color: white;">مجـــاني</span>
+                                                </span>
+                                                <!--<span class="off-price">$120</span>-->
+                                            </div>
+                                            <a class="rbt-btn-link" herf="#" @click.prevent="href('/CourseInfo'+'?'+'id='+item.id)">
+                                                عرض الدورة التدريبية <i class="feather-arrow-left"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Card  -->
+
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+
+                            <div class="col-lg-12 mt--60">
+
+                                <div class="dataTable-bottom" v-if="Info!=0">
+                                    <nav class="dataTable-pagination">
+                                        <el-pagination class="dataTable-pagination-list rbt-pagination"
+                                                       background
+                                                       layout="prev, pager, next"
+                                                       :current-page="pageNo"
+                                                       :page-size="pageSize"
+                                                       :total="pages"
+                                                       @current-change="GetInfo($event)">
+                                        </el-pagination>
+                                    </nav>
+                                    <div class="dataTable-info" style="color: white; margin-top: -30px; ">عرض {{pageSize}} من {{pages}} دورة تدريبية</div>
+                                </div>
+
+                                <!--<nav>
+                        <ul class="rbt-pagination">
+                            <li><a href="#" aria-label="Previous"><i class="feather-chevron-left"></i></a></li>
+                            <li><a href="#">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#" aria-label="Next"><i class="feather-chevron-right"></i></a></li>
+                        </ul>
+                    </nav>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card Area -->
+
+        </div>
+    </div>
+    <!-- End Card Style -->
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,156 @@
+﻿
+
+<div class="container-fluid py-4" dir="rtl" >
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="multisteps-form mb-12">
+                <div class="row">
+                    <div class="col-12 col-lg-12 m-auto">
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm"
+                                 class="multisteps-form__form mb-8">
+
+                            <div class="card  p-3 border-radius-xl bg-white js-active"
+                                 data-animation="FadeIn">
+                                <h5 class="font-weight-bolder mb-0">تقديم طلب نشر عرض   </h5>
+                                <p class="mb-0 text-sm" style="margin-top: 7px;">الرجاء التأكد من إدخال جميع البيانات المطلوبة   </p>
+
+                                <div class="multisteps-form__content">
+
+                                    <!--Personal Info-->
+                                    <div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                        <el-divider content-position="right"><h4>بيانات   العرض   </h4></el-divider>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <el-form-item label="الغرفة " prop="CompaniesRoomId">
+                                                <el-select v-model="ruleForm.CompaniesRoomId" 
+                                                            placeholder=" الغرفة  " >
+                                                    <el-option v-for="item in CompaniesRooms"
+                                                               :key="item.id"
+                                                               :label="item.discriptions"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <el-form-item label=" إسم   " prop="Name">
+                                                <input v-model="ruleForm.Name"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" إسم  ">
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <el-form-item label="   وصف الاعلان " prop="Descriptions">
+                                                <input v-model="ruleForm.Descriptions"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="  وصف الاعلان ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <el-form-item label="الفئة المستهدفة  " prop="Target">
+                                                <el-select v-model="ruleForm.Target"
+                                                           style="width:100%;"
+                                                           filterable
+                                                           placeholder="الفئة المستهدفة  ">
+                                                    <el-option v-for="item in [
+                                                               {id:1,name:' طلبة '},
+                                                               {id:2,name:'  شركات '},
+                                                               {id:3,name:'  افراد '}
+                                                               ]"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <el-form-item label="نوع المدة " prop="LenthType">
+                                                <el-select v-model="ruleForm.LenthType"
+                                                           style="width:100%;"
+                                                           filterable
+                                                           placeholder=" نوع المدة  ">
+                                                    <el-option v-for="item in [
+                                                               {id:1,name:' ساعات '},
+                                                               {id:2,name:'  ايام '},
+                                                               {id:3,name:'  اشهر '}
+                                                               ]"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <el-form-item label=" اكبر مدة للحجز " prop="MaxLenth">
+                                                <input v-model="ruleForm.MaxLenth"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  اكبر مدة للحجز ">
+                                            </el-form-item>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <el-form-item label=" اقل مدة للحجز " prop="LessLenth">
+                                                <input v-model="ruleForm.LessLenth"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  اقل مدة للحجز ">
+                                            </el-form-item>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <el-form-item label=" السعر " prop="Price">
+                                                <input v-model="ruleForm.Price"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="    السعر ">
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <el-form-item label=" قيمة الحجز المبدئي " prop="InitialPaymentPrice">
+                                                <input v-model="ruleForm.InitialPaymentPrice"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="    قيمة الحجز المبدئي ">
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-6" style="text-align: left; margin-top: 45px ">
+                                            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
+                                                    title="Next"
+                                                    @click.prevent="submitForm('ruleForm')">
+                                                إضافة البيانات
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                    <!--Button Info-->
+                                    <!--<div class="row" style="margin-top:25px">
+                                        <div class="col-12 col-sm-12" style="text-align:left">
+                                            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
+                                                    title="Next"
+                                                    @click.prevent="submitForm('ruleForm')">
+                                                إضافة البيانات
+                                            </button>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </el-form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

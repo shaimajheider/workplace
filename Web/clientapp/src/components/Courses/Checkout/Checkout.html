@@ -1,0 +1,357 @@
+﻿
+
+
+
+
+
+
+
+
+<div dir="rtl">
+
+    <div class="rbt-error-area bg-gradient-11 rbt-section-gap" v-if="!Info"
+         style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;margin-top:50px">
+        <div class="error-area">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-10">
+                        <h1 class="title">404!</h1>
+                        <h3 style="color:white !important" class="sub-title">الصفحة ليست متوفرة</h3>
+                        <p style="color:white !important">الصفحة ليست متوفرة حاليا الرجاء اعادة المحاولة لاحقا. </p>
+                        <a class="rbt-btn btn-gradient icon-hover" href="#"
+                           @click.prevent="href('/')"
+                           style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">
+                            <span class="btn-text">العودة للصفخة الرئيسية </span>
+                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="checkout_area bg-color-white rbt-section-gap"
+         style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) ">
+        <div class="container" v-if="Info">
+            <div class="row g-5 checkout-form" style=" margin-top: 50px">
+
+
+
+
+
+                <div class="col-lg-5">
+                    <div class="row pl--50 pl_md--0 pl_sm--0">
+                        <!-- Cart Total -->
+                        <div class="col-12 mb--60">
+
+                            <!--<h4 class="checkout-title" style="color:white">الإجمالي</h4>-->
+
+                            <div class="checkout-cart-total">
+
+                                <h4><span>بيانات  الدورة التدريبية</span> </h4>
+
+                                <!--<ul>
+                        <li>Samsome Notebook Pro 5 X 01 <span>$295.00</span></li>
+                        <li>Aquet Drone D 420 X 02 <span>$550.00</span></li>
+                        <li>Play Station X 22 X 01 <span>$295.00</span></li>
+                        <li>Roxxe Headphone Z 75 X 01 <span>$110.00</span></li>
+                    </ul>-->
+
+                                <p dir="ltr"><span>الدورة التدريبية</span>   {{Info.name}} </p>
+                                <p dir="ltr"><span>المرحلة التعليمية </span>   {{Info.academicLevel}} </p>
+                                <p dir="ltr"><span>التخصص  </span>   {{Info.academicSpecialization}} </p>
+                                <p dir="ltr"><span>المادة الدراسية  </span>   {{Info.subjectName}} </p>
+                                <p dir="ltr"><span> عدد الشباتر  </span>   {{Info.shapterCount}} </p>
+                                <p dir="ltr"><span> المدرب  </span>   {{Info.instructorName}} </p>
+                                <p dir="ltr"><span> تاريخ الإدراج  </span>   {{Info.createdOn | moment}} </p>
+                                <p dir="ltr" style="font-weight: bold; display: flex; font-size: 19px; justify-content: space-between; ">
+
+                                    <span>
+                                        <span style="margin-left: 7px;">
+                                            {{Info.price}}
+                                        </span>
+
+                                        <span>
+                                            د.ل
+                                        </span>
+
+
+                                    </span>
+                                    <span> قيمة الكورس  </span>
+                                </p>
+
+                                <!--<h4 dir="ltr" class="mt--30">قيمة الكورس <span>{{Info.price}} د.ل</span></h4>-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- Payment Method -->
+                        <!--<div class="col-12 mb--60">-->
+                        <!--<h4 class="checkout-title">Payment Method</h4>-->
+                        <!--<div class="checkout-payment-method">
+
+                <div class="single-method">-->
+                        <!--<input type="radio" id="payment_check" name="payment-method" value="check">-->
+                        <!--<label for="payment_check">طريقة الدفع </label>
+                </div>
+
+                <div class="single-method">
+                    <label for="payment_bank">كروت الدفع المسبق الخاصه بترانيم العلم</label>
+                </div>
+
+                <div class="single-method">
+                    <label for="payment_bank">يمكنك الحصول على بطاقة الدفع المسبق لترانيم العلم عن طريق الموزعين المعتمدين او عن طريق تحميل تطبيق أنيس لبيع كروت الدفع المسبق </label>
+                </div>
+
+                <div class="single-method">
+                    <a href="#">الحصول على التطبيق</a>
+
+                </div>
+            </div>-->
+                        <!--<div class="plceholder-button mt--50">
+                <button class="rbt-btn btn-gradient hover-icon-reverse">
+                    <span class="icon-reverse-wrapper">
+                        <span class="btn-text">Place order</span>
+                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                    </span>
+                </button>
+            </div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-lg-7">
+                    <div class="checkout-content-wrapper">
+
+                        <!-- Billing Address -->
+                        <div id="billing-form">
+                            <h4 class="checkout-title">شراء دورة تدريبية </h4>
+
+                            <div class="advance-tab-button mb--30">
+                                <ul class="nav nav-tabs tab-button-style-2 justify-content-start" id="settinsTab-4" role="tablist">
+                                    <li role="presentation">
+                                        <a href="#" class="tab-button active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="true">
+                                            <span class="title">خصم القيمة من المحفظة</span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#" class="tab-button" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" role="tab" aria-controls="password" aria-selected="false">
+                                            <span class="title">الدفع الإلكتروني</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+
+
+                                        <div class="content">
+                                            <div class="section-title">
+                                                <h4 class="rbt-title-style-3">
+                                                    سيتم خصم قيمة {{Info.price}}    د.ل من المحقظة الإلكترونية
+
+                                                    <span>
+                                                        هل أنت متأكد من المتابعة
+                                                    </span>
+                                                </h4>
+                                            </div>
+
+                                            <div class="row d-flex justify-content-center" dir="ltr">
+                                                <div class="col-md-6">
+                                                    <a class="rbt-btn bg-coral-opacity hover-icon-reverse btn-sm" href="#"
+                                                       @click.prevent="Checkout()">
+                                                        <span class="icon-reverse-wrapper">
+                                                            <span class="btn-text">خصم القيمة من المحفظة </span>
+                                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+
+                                        <!-- Start Profile Row  -->
+                                        <!--<el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm"
+                                 class="rbt-profile-row rbt-default-form row row--15">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="rbt-form-group">
+                                    <el-form-item prop="FirstName">
+                                        <label for="firstname"> الإسم <span style="color:red">*</span> </label>
+                                        <input id="firstname" type="text" v-model="ruleForm.FirstName">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="rbt-form-group">
+                                    <el-form-item prop="FatherName">
+                                        <label for="FatherName"> اسم الأب <span style="color:red">*</span> </label>
+                                        <input id="FatherName" type="text" v-model="ruleForm.FatherName">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="rbt-form-group">
+                                    <el-form-item prop="SirName">
+                                        <label for="SirName"> اللقب <span style="color:red">*</span> </label>
+                                        <input id="SirName" type="text" v-model="ruleForm.SirName">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="rbt-form-group">
+                                    <el-form-item prop="LoginName">
+                                        <label for="LoginName"> إسم المستخدم <span style="color:red">*</span> </label>
+                                        <input id="LoginName" type="text" v-model="ruleForm.LoginName">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="rbt-form-group">
+                                    <el-form-item prop="Email">
+                                        <label for="email"> البريد الإلكتروني <span style="color:red">*</span> </label>
+                                        <input id="email" type="email" v-model="ruleForm.Email">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="rbt-form-group">
+                                    <el-form-item prop="Phone">
+                                        <label for="Phone"> رقم الهاتف <span style="color:red">*</span> </label>
+                                        <input id="Phone" type="email" v-model="ruleForm.Phone">
+                                    </el-form-item>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="rbt-form-group">
+                                    <el-form-item prop="CollageId">
+                                        <label for="CollageId"> رقم القيد الجامعي <span style="color:red">*</span> </label>
+                                        <input id="CollageId" type="email" v-model="ruleForm.CollageId">
+                                    </el-form-item>
+                                </div>
+                            </div>-->
+                                        <!--<div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="filter-select rbt-modern-select">
+                                    <label for="displayname" class="">Display name publicly as</label>
+                                    <select id="displayname" class="w-100">
+                                        <option>Emily Hannah</option>
+                                        <option>John</option>
+                                        <option>Due</option>
+                                        <option>Due John</option>
+                                        <option>johndue</option>
+                                    </select>
+                                </div>
+                            </div>-->
+                                        <!--<div class="col-12">
+                                    <div class="rbt-form-group">
+                                        <el-form-item prop="AboutMe">
+                                            <label for="Bio"> Bio <span style="color:red">*</span> </label>
+                                            <textarea id="Bio" cols="20" rows="5" v-model="ruleForm.AboutMe"></textarea>
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt--20">
+                                    <div class="rbt-form-group" dir="ltr">
+                                        <a class="rbt-btn btn-gradient btn-sm"
+                                           href="#"
+                                           @click.prevent="submitPersonalInfoForm('ruleForm')"
+                                           style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">تعديل البيانات</a>
+                                    </div>
+                                </div>
+                            </el-form>-->
+                                        <!-- End Profile Row  -->
+                                    </div>
+
+                                    <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+
+                                        <h5 style="margin-right: 20px; font-family: 'DroidArabicKufiRegular'; ">
+                                            سيتم توفير هذا الخدمة قريبا
+                                        </h5>
+
+                                        <!-- Start Profile Row  -->
+                                        <!--<el-form :model="ruleForm"
+                                     :rules="rules"
+                                     ref="ruleForm"
+                                     class="rbt-profile-row rbt-default-form row row--15">
+                                <div class="col-12">
+                                    <div class="rbt-form-group">
+                                        <el-form-item prop="Password">
+                                            <label for="Password"> كلمة المرور الحالية <span style="color:red">*</span> </label>
+                                            <input id="Password" type="password" v-model="ruleForm.Password"
+                                                   placeholder="كلمة المرور">
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="rbt-form-group">
+                                        <el-form-item prop="NewPassword">
+                                            <label for="NewPassword"> كلمة المرور الجديدة <span style="color:red">*</span> </label>
+                                            <input id="NewPassword" type="password" v-model="ruleForm.NewPassword"
+                                                   placeholder="كلمة المرور">
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="rbt-form-group">
+                                        <el-form-item prop="NewPassword">
+                                            <label for="ConfirmPassword"> تأكيد كلمة المرور  <span style="color:red">*</span> </label>
+                                            <input id="ConfirmPassword" type="password" v-model="ruleForm.ConfirmPassword"
+                                                   placeholder="كلمة المرور">
+                                        </el-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt--10">
+                                    <div class="rbt-form-group" dir="ltr">
+                                        <a class="rbt-btn btn-gradient btn-sm"
+                                           href="#"
+                                           @click.prevent="submitPasswordForm('ruleForm')"
+                                           style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">تعديل البيانات</a>
+                                    </div>
+                                </div>
+                            </el-form>-->
+                                        <!-- End Profile Row  -->
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+

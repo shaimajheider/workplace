@@ -1,0 +1,248 @@
+﻿
+
+<div class="container-fluid py-4" dir="rtl" >
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="multisteps-form mb-12">
+                <div class="row">
+                    <div class="col-12 col-lg-12 m-auto">
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm"
+                                 class="multisteps-form__form mb-8">
+
+                            <div class="card  p-3 border-radius-xl bg-white js-active"
+                                 data-animation="FadeIn">
+                                <h5 class="font-weight-bolder mb-0">تسجيل بيانات شركة جديدة  </h5>
+                                <p class="mb-0 text-sm" style="margin-top: 7px;">الرجاء التأكد من إدخال جميع البيانات المطلوبة   </p>
+
+                                <div class="multisteps-form__content">
+
+                                    <!--Personal Info-->
+                                    <div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                        <el-divider content-position="right"><h4>بيانات   الشركة   </h4></el-divider>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <el-form-item label="إسم الشركة " prop="Name">
+                                                <input v-model="ruleForm.Name"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="إسم الشركة ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <el-form-item label=" إسم الدخول للمنصة  " prop="LoginName">
+                                                <input v-model="ruleForm.LoginName"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" إسم الدخول ">
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <el-form-item label="  رقم الهاتف " prop="Phone">
+                                                <input v-model="ruleForm.Phone"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" رقم الهاتف ">
+                                            </el-form-item>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <el-form-item label="  البريد الإلكتروني " prop="Email">
+                                                <input v-model="ruleForm.Email"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" البريد الإلكتروني ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                        <el-divider content-position="right"><h4>بيانات   المدير العام    </h4></el-divider>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <el-form-item label="الإسم رباعي" prop="OwnerName">
+                                                <input v-model="ruleForm.OwnerName"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="الإسم رباعي">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <el-form-item label=" رقم الهاتف " prop="OwnerPhone">
+                                                <input v-model="ruleForm.OwnerPhone"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="  رقم الهاتف ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                        <el-divider content-position="right"><h4>بيانات   عنوان الشركة     </h4></el-divider>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <el-form-item label="  شرح تفصيلي عن الموقع  " prop="LocationDescriptions">
+                                                <input v-model="ruleForm.LocationDescriptions"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder=" شرح تفصيلي عن الموقع ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <el-form-item label=" رابط الكتروني للموقع" prop="LocationLink">
+                                                <input v-model="ruleForm.LocationLink"
+                                                       class="multisteps-form__input form-control" type="text"
+                                                       placeholder="    Google Map Link ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد الطوابق " prop="FloorCount">
+                                                <input v-model="ruleForm.FloorCount"
+                                                       style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder=" عدد الطوابق">
+                                            </el-form-item>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد القاعات الدراسية  " prop="ClassRoomCount">
+                                                <input v-model="ruleForm.ClassRoomCount"
+                                                        style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد القاعات الدراسية ">
+                                            </el-form-item>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد قاعات الاجتماعات   " prop="MeetingRoomCount">
+                                                <input v-model="ruleForm.MeetingRoomCount"
+                                                        style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد قاعات الاجتماعات ">
+                                            </el-form-item>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <el-form-item label="  عدد غرف التدريب    " prop="TraningRoomCount">
+                                                <input v-model="ruleForm.TraningRoomCount"
+                                                        style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد غرف التدريب  ">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <el-form-item label="  عدد المكاتب الخاصة   " prop="PrivateRoomCount">
+                                                <input v-model="ruleForm.PrivateRoomCount"
+                                                        style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder="  عدد المكاتب الخاصة    ">
+                                            </el-form-item>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <el-form-item label="  عدد المكاتب " prop="OfficeCount">
+                                                <input v-model="ruleForm.OfficeCount"
+                                                        style="text-align:right"
+                                                       class="multisteps-form__input form-control" type="number"
+                                                       placeholder=" عدد المكاتب">
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+
+                                    <!--Cotact Info-->
+                                    <div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                        <el-divider content-position="right"><h4> المرفقات     </h4></el-divider>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <el-form-item>
+                                                <el-upload action="#"
+                                                           :on-change="SelectCoverAttachment"
+                                                           list-type="picture-card"
+                                                           :auto-upload="false">
+                                                    <i slot="default" class="el-icon-plus"></i>
+                                                    <div slot="file" slot-scope="{file}">
+                                                        <img class="el-upload-list__item-thumbnail"
+                                                             :src="file.url" alt="">
+                                                        <span class="el-upload-list__item-actions">
+                                                            <span class="el-upload-list__item-preview"
+                                                                  style="margin-left:15px"
+                                                                  @click="handlePictureCardPreview(file)">
+                                                                <i class="el-icon-zoom-in"></i>
+                                                            </span>
+                                                            <span v-if="!disabled"
+                                                                  class="el-upload-list__item-delete"
+                                                                  @click="handleDownload(file)">
+                                                                <i class="el-icon-download"></i>
+                                                            </span>
+                                                            <span v-if="!disabled"
+                                                                  class="el-upload-list__item-delete"
+                                                                  @click="handleRemove(file)">
+                                                                <i class="el-icon-delete"></i>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </el-upload>
+                                            </el-form-item>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <el-dialog :visible.sync="dialogVisible">
+                                                <img width="100%" :src="dialogImageUrl" alt="">
+                                            </el-dialog>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!--Note Info-->
+                                    <div class="row" style="margin-top: 98px; margin-bottom: 25px;">
+                                        <el-divider content-position="right"><h4>ملاحظات أخري يمكن الاستفادة منها   </h4></el-divider>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12">
+                                            <el-form-item prop="Notes">
+                                                <el-input :rows="4" type="textarea" v-model="ruleForm.Notes"
+                                                          placeholder="الملاحظات">
+                                                </el-input>
+                                            </el-form-item>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!--Button Info-->
+                                    <div class="row" style="margin-top:25px">
+                                        <div class="col-12 col-sm-12" style="text-align:left">
+                                            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
+                                                    title="Next"
+                                                    @click.prevent="submitForm('ruleForm')">
+                                                إضافة البيانات
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </el-form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,95 @@
+﻿
+
+
+
+<div >
+
+    <!-- Start breadcrumb Area -->
+    <div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1" 
+         style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important; ">
+        <div class="container" style="margin-top:50px">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-inner text-center">
+                        <h2 class="title" style="color:white">مدربين منصة ترانيم العلم </h2>
+                        <br />
+                        <ul class="page-list">
+                            <li class="rbt-breadcrumb-item active">بيانات المدربين</li>
+
+                            <li>
+                                <div class="icon-left"><i class="feather-chevron-left"></i></div>
+                            </li>
+                            <li class="rbt-breadcrumb-item"><a href="#" @click.prevent="href('/')">الصفحة الرئيسية</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb Area -->
+
+    <div class="rbt-team-area bg-color-extra2 rbt-section-gap" style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">
+        <div class="container">
+            <div class="row g-5" dir="rtl">
+
+                <!-- Start Single Team  -->
+                <div class="col-lg-3 col-md-6 col-12" v-for="item,index in Info">
+                    <div class="rbt-team team-style-default style-three small-layout rbt-hover">
+                        <div class="inner">
+                            <div class="thumbnail">
+                                <img :src="ServerUrl+item.imagePath" alt="Corporate Template" v-if="item.imagePath">
+                                <img src="assets/images/image/Default Instracture.jpg" alt="Corporate Template" v-if="!item.imagePath">
+                            </div>
+                            <div class="content">
+                                <a href="#" @click.prevent="href('/InstructorProfile'+'?'+'id='+item.id)">
+                                    <h4 class="title">{{item.name}}</h4>
+                                </a>
+
+                                <h6 class="subtitle theme-gradient">مدرب  </h6>
+                                <span class="team-form">
+                                    <span class="location">
+
+                                        <span dir="ltr">  الدورات التدريبية : {{item.courseCount}}  </span>
+
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <!--<div class="row" dir="rtl" style=" margin-top: 72px;">
+                <div class="col-lg-12 mt--60">
+                    <div class="dataTable-bottom" v-if="Info!=0">
+                        <nav class="dataTable-pagination">
+                            <el-pagination class="dataTable-pagination-list rbt-pagination"
+                                           background
+                                           layout="prev, pager, next"
+                                           :current-page="pageNo"
+                                           :page-size="pageSize"
+                                           :total="pages"
+                                           @current-change="GetInfo($event)">
+                            </el-pagination>
+                        </nav>
+                        <div class="dataTable-info" style="color: white; margin-top: -30px; ">عرض {{pageSize}} من {{pages}} مدرب</div>
+                    </div>
+                </div>
+            </div>-->
+
+        </div>
+
+
+    </div>
+
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+
+</div>

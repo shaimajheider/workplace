@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ScreenControl/v16/Server/sqlite3
+
+/Publish
+/vue-argon-dashboard-2-pro-v3.0.1.zip
+/vue-argon-dashboard-2-pro-v3.0.1
+/argon-dashboard-pro-html-v2.0.5
+/vue-argon-dashboard-2-pro-v3.0.1
+/html templeate
+/FirstScema.sql
+
+/WebPublish

@@ -1,0 +1,375 @@
+﻿
+
+
+
+
+
+
+
+
+<div>
+
+    <div class="rbt-become-area bg-color-white rbt-section-gap" style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">
+        <div class="container">
+            
+
+            <div class="row pt--60 g-5" style="direction:rtl">
+
+
+                <div class="col-lg-5" v-if="state==0">
+                    <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+
+
+
+                        <div class="section-title text-end">
+                            <span class="subtitle bg-primary-opacity">تسجيل دخول طالب </span>
+                        </div>
+                        <h3 class="title">البيانات الشخصية</h3>
+                        <hr class="mb--30">
+
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm" class="row row--15">
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <el-form-item label="إسم الستخدم  " prop="Email">
+                                        <input v-model="ruleForm.Email" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <el-form-item label="كلمة المرور" prop="Password">
+                                        <input v-model="ruleForm.Password" v-on:keyup.enter="submitForm('ruleForm')" name="con_name" type="password">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12" style="text-align: center; margin-bottom: 10px; margin-top: -18px;">
+                                <a style="color: blue; font-size: 14px; text-decoration: underline; cursor: pointer;"
+                                   @click.prevent="ForgerPassword()">نسيت كلمة المرور</a>
+                            </div>
+
+
+                            <vue-recaptcha class="d-flex justify-content-center"
+                                           ref="recaptcha"
+                                           @verify="onVerify"
+                                           @expired="onExpired"
+                                           :sitekey="sitekey">
+                            </vue-recaptcha>
+
+
+                            <!--<div class="col-lg-12">
+                    <div class="form-submit-group" style="direction:ltr">
+                        <button @click.prevent="submitForm('ruleForm')"
+                                type="submit"
+                                class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100"
+                                style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">
+                            <span class="icon-reverse-wrapper">
+                                <span class="btn-text">التسجيل في المنصة </span>
+                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>-->
+                            <div class="col-lg-12">
+                                <div class="add-to-card-button mt--15" dir="ltr" @click.prevent="submitForm('ruleForm')">
+                                    <a class="rbt-btn btn-gradient icon-hover w-100 d-block text-center"
+                                       style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;" href="#">
+                                        <span class="btn-text">تــــسـجـــيـل الـدخــــول</span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="buy-now-btn mt--15" dir="ltr">
+                                    <a class="rbt-btn btn-border icon-hover w-100 d-block text-center" href="#" @click.prevent="href('/SignUp')">
+                                        <span class="btn-text">الإشتراك في المنصة</span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </el-form>
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-5" v-if="state==1">
+                    <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+
+
+
+                        <div class="section-title text-end">
+                            <span class="subtitle bg-primary-opacity"> نسيت كلمة المرور  </span>
+                        </div>
+                        <h3 class="title">الرجاء التأكد من البيانات</h3>
+                        <hr class="mb--30">
+
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm" class="row row--15">
+
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <el-form-item label="رقم الهاتف  ">
+                                        <input v-model="PhoneNumber" name="con_name" type="text">
+                                        <span class="focus-border"></span>
+                                    </el-form-item>
+                                </div>
+                            </div>
+
+
+                            <vue-recaptcha class="d-flex justify-content-center"
+                                           ref="recaptcha"
+                                           @verify="onVerify"
+                                           @expired="onExpired"
+                                           :sitekey="sitekey">
+                            </vue-recaptcha>
+
+
+                            <div class="col-lg-12">
+                                <div class="add-to-card-button mt--15" dir="ltr" @click.prevent="SendOtp()">
+                                    <a class="rbt-btn btn-gradient icon-hover w-100 d-block text-center"
+                                       style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;" href="#">
+                                        <span class="btn-text">   إرسال البيانات </span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="buy-now-btn mt--15" dir="ltr">
+                                    <a class="rbt-btn btn-border icon-hover w-100 d-block text-center" href="#" @click.prevent="back()">
+                                        <span class="btn-text">العودة لصفجة تسجيل الدخول</span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </el-form>
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-lg-7">
+                    <div class="thumbnail">
+                        <img class="radius-10 w-100" src="assets/images/image/1101.jpg" alt="Corporate Template">
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="rbt-elements-area bg-color-white rbt-section-gap" style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">
+        <div class="container" dir="rtl">
+            <div class="row gy-5 row--30">
+
+
+                <div class="col-lg-6">
+                    <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+                        <h3 class="title">Login</h3>
+                        <form class="max-width-auto">
+                            <div class="form-group">
+                                <input name="con_name" type="text" />
+                                <label>Username or email *</label>
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="form-group">
+                                <input name="con_email" type="email">
+                                <label>Password *</label>
+                                <span class="focus-border"></span>
+                            </div>
+
+                            <div class="row mb--30">
+                                <div class="col-lg-6">
+                                    <div class="rbt-checkbox">
+                                        <input type="checkbox" id="rememberme" name="rememberme">
+                                        <label for="rememberme">Remember me</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="rbt-lost-password text-end">
+                                        <a class="rbt-btn-link" href="#">Lost your password?</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-submit-group">
+                                <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
+                                    <span class="icon-reverse-wrapper">
+                                        <span class="btn-text">Log In</span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="video-popup-wrapper" style="width: 129%;">
+                        <img class="w-100 rbt-radius" src="assets/images/image/5.png" alt="Video Images">-->
+                        <!--<a class="rbt-btn rounded-player-2 popup-video position-to-top with-animation" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
+        <span class="play-icon"></span>
+    </a>-->
+                    <!--</div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>-->
+
+
+
+
+
+
+
+
+
+
+<!--<div class="login-page sidebar-mini">
+    <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute" dir="rtl">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <a class="navbar-brand" style="color:black;font-weight:bold;">ادارة الكلى  / دخـول المخولين</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            </div>
+        </div>
+    </nav>-->
+    <!-- End Navbar -->
+    <!--<div class="wrapper wrapper-full-page ">
+        <div class="full-page section-image" style=" background-image: url('./img/BackgroundImage.png'); height: auto; background-color: none;">-->
+        <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+        <!--<div class="content">
+            <div class="container">
+                <div class="col-md-4 ml-auto mr-auto">
+                    <form class="form">
+                        <div class="card card-login card-plain">
+                            <div class="card-header ">
+                                <div class="logo-container" style=" width: 200px;">
+                                    <img src="/assets/logo.jpg" alt="" style="max-width: 170%!important;">
+                                </div>
+                            </div>
+                            <div class="card-body ">
+                                <div class="input-group no-border form-control-lg">
+                                    <span class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </div>
+                                    </span>
+                                    <input  v-on:keyup.enter="login()" type="text" class="form-control" 
+                                               id="inputEmail"
+                                               v-model="form.Email"
+                                               placeholder="البريد الالكتروني / اسم المستخدم"
+                                               required
+                                               autofocus
+                                           >
+                                </div>
+                                <div class="input-group no-border form-control-lg">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="now-ui-icons text_caps-small"></i>
+                                        </div>
+                                    </div>
+                                    <input  v-on:keyup.enter="login()"  type="password" placeholder="الرقم السري" class="form-control"
+                                               id="inputPassword"
+                                               v-model="form.Password"
+                                               required
+                                           >
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <a href="#" class="btn btn-primary btn-round btn-lg btn-block mb-3" @click.prevent="login()">تسجيل الدخول</a>
+                                <div class="pull-left">-->
+                                    <!--<h6><a href="https://qac.codeexperts.ly/" class="link footer-link">انشاء حساب جديد</a></h6>-->
+                                <!--</div>-->
+                                <!--<div class="pull-right">
+                                    <h6><a href="#pablo" class="link footer-link">Need Help?</a></h6>
+                                </div>-->
+                            <!--</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class=" container-fluid ">
+                <div class="credits ml-auto">
+                    <span class="copyright" style="color: black; font-weight: bold;">
+                        ©
+                        <script type="application/javascript">
+                                    {{Date().toLocaleString().split(" ")[3]}}
+                        </script>حقوق الطبع والنشر محفوظه<i class="fa fa-heart heart" style="color:red;"></i> شركة الرواق للاتصالات وتقنية المعلومات
+                    </span>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+</div>-->

@@ -1,0 +1,1386 @@
+﻿
+
+
+
+
+<div dir="rtl">
+
+
+
+    <a class="close_side_menu" href="javascript:void(0);"></a>
+    <div class="rbt-page-banner-wrapper">
+        <!-- Start Banner BG Image  -->
+        <div class="rbt-banner-image"></div>
+        <!-- End Banner BG Image  -->
+    </div>
+    <!-- Start Card Style -->
+    <div class="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom" v-if="Info!=0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Start Dashboard Top  -->
+                    <div class="rbt-dashboard-content-wrapper">
+                        <div class="tutor-bg-photo bg_image bg_image--23 height-350"></div>
+                        <!-- Start Tutor Information  -->
+                        <div class="rbt-tutor-information">
+                            <div class="rbt-tutor-information-left">
+                                <div class="thumbnail rbt-avatars size-lg">
+                                    <img :src="ServerUrl+loginDetails.imagePath" alt="Instructor" v-if="loginDetails.imagePath">
+                                    <img src="assets/images/image/StudentLogo.jpg" alt="Instructor" v-if="!loginDetails.imagePath">
+                                </div>
+                                <div class="tutor-content">
+                                    <h5 class="title">{{loginDetails.name}}</h5>
+                                    <ul class="rbt-meta rbt-meta-white mt--5" >
+                                        <li dir="ltr">{{Info.studentCourseInfo.length}} عدد الدورات التدريبية <i class="feather-book"></i></li>
+                                        <!--<li>4 Certificate <i class="feather-award"></i></li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--<div class="rbt-tutor-information-right">
+                                <div class="tutor-btn">
+                                    <a class="rbt-btn btn-md hover-icon-reverse" href="#">
+                                        <span class="icon-reverse-wrapper">
+                                            <span class="btn-text">Become an Instructor</span>
+                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>-->
+                        </div>
+                        <!-- End Tutor Information  -->
+                    </div>
+                    <!-- End Dashboard Top  -->
+
+                    <div class="row g-5">
+                        <div class="col-lg-3">
+                            <!-- Start Dashboard Sidebar  -->
+                            <div class="rbt-default-sidebar sticky-top rbt-shadow-box rbt-gradient-border">
+                                <div class="inner">
+                                    <div class="content-item-content">
+
+                                        <div class="rbt-default-sidebar-wrapper">
+                                            <div class="section-title mb--20">
+                                                <h6 class="rbt-title-style-2">مــرحــبا، {{loginDetails.name}}</h6>
+                                            </div>
+                                            <nav class="mainmenu-nav">
+                                                <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=0">
+                                                            <i class="feather-home" v-if="state==0" style="color:dodgerblue"></i>
+                                                            <i class="feather-home" v-if="state!=0"></i>
+                                                            <span v-if="state==0" style="color:dodgerblue">لوحة التحكم</span>
+                                                            <span v-if="state!=0">لوحة التحكم</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=1">
+                                                            <i class="feather-user" v-if="state==1" style="color:dodgerblue"></i>
+                                                            <i class="feather-user" v-if="state!=1"></i>
+                                                            <span v-if="state==1" style="color:dodgerblue">الصفحة الشخصية</span>
+                                                            <span v-if="state!=1">الصفحة الشخصية</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=2">
+                                                            <i class="feather-book-open" v-if="state==2" style="color:dodgerblue"></i>
+                                                            <i class="feather-book-open" v-if="state!=2"></i>
+                                                            <span v-if="state==2" style="color:dodgerblue">الدورات التدريبية</span>
+                                                            <span v-if="state!=2">الدورات التدريبية</span>
+                                                        </a>
+                                                    </li>
+                                                    <!--<li>
+                                                        <a href="#" @click.prevent="state=3">
+                                                            <i class="feather-bookmark" v-if="state==3" style="color:dodgerblue"></i>
+                                                            <i class="feather-bookmark" v-if="state!=3"></i>
+                                                            <span v-if="state==3" style="color:dodgerblue">المفضلة</span>
+                                                            <span v-if="state!=3">المفضلة</span>
+                                                        </a>
+                                                    </li>-->
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=4">
+                                                            <i class="feather-star" v-if="state==4" style="color:dodgerblue"></i>
+                                                            <i class="feather-star" v-if="state!=4"></i>
+                                                            <span v-if="state==4" style="color:dodgerblue">تقيماتي</span>
+                                                            <span v-if="state!=4">تقيماتي</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=5">
+                                                            <i class="feather-list" v-if="state==5" style="color:dodgerblue"></i>
+                                                            <i class="feather-list" v-if="state!=5"></i>
+                                                            <span v-if="state==5" style="color:dodgerblue">الإختبارات</span>
+                                                            <span v-if="state!=5">الإختبارات</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=6">
+                                                            <i class="feather-clock" v-if="state==6" style="color:dodgerblue"></i>
+                                                            <i class="feather-clock" v-if="state!=6"></i>
+                                                            <span v-if="state==6" style="color:dodgerblue">حركة الحساب</span>
+                                                            <span v-if="state!=6">حركة الحساب</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=7">
+                                                            <i class="feather-shopping-bag" v-if="state==7" style="color:dodgerblue"></i>
+                                                            <i class="feather-shopping-bag" v-if="state!=7"></i>
+                                                            <span v-if="state==7" style="color:dodgerblue">حركة المحفظة</span>
+                                                            <span v-if="state!=7">حركة المحفظة</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=8">
+                                                            <i class="feather-book-open" v-if="state==8" style="color:dodgerblue"></i>
+                                                            <i class="feather-book-open" v-if="state!=8"></i>
+                                                            <span v-if="state==8" style="color:dodgerblue">دليل الاستخدام</span>
+                                                            <span v-if="state!=8"> دليل الاستخدام </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+
+                                            <div class="section-title mt--40 mb--20">
+                                                <h6 class="rbt-title-style-2">طــالــب </h6>
+                                            </div>
+
+                                            <nav class="mainmenu-nav">
+                                                <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                    <li>
+                                                        <a href="#" @click.prevent="state=9">
+                                                            <i class="feather-settings" v-if="state==9" style="color:dodgerblue"></i>
+                                                            <i class="feather-settings" v-if="state!=9" ></i>
+                                                            <span v-if="state==9" style="color:dodgerblue">الإعدادات</span>
+                                                            <span v-if="state!=9">الإعدادات</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"  @click.prevent="logout()">
+                                                            <i class="feather-log-out"></i>
+                                                            <span>تسجيل الخروج</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dashboard Sidebar  -->
+                        </div>
+
+
+
+
+
+
+
+
+                        <!--Dashboard Info-->
+                        <div class="col-lg-9" v-if="state==0">
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb--60">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">لوحة التحكم</h4>
+                                    </div>
+                                    <div class="row g-5">
+
+
+                                        <!-- Start Single Card  -->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-default-opacity">
+                                                <div class="inner">
+                                                    <div class="rbt-round-icon bg-primary-opacity">
+                                                        <i class="feather-book-open"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="counter without-icon color-primary">
+                                                            <span class="odometer" data-count="30">{{Info.studentCourseInfo.length}}</span>
+                                                        </h3>
+                                                        <span class="rbt-title-style-2 d-block">الدورات التدريبية</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Card  -->
+                                        <!-- Start Single Card  -->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-default-opacity">
+                                                <div class="inner">
+                                                    <div class="rbt-round-icon bg-secondary-opacity">
+                                                        <i class="feather-monitor"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="counter without-icon color-secondary">
+                                                            <span class="odometer" data-count="10">{{Info.exam.length}}</span>
+                                                        </h3>
+                                                        <span class="rbt-title-style-2 d-block">عدد الإختبارات </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- End Single Card  -->
+                                        <!-- Start Single Card  -->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-default-opacity">
+                                                <div class="inner">
+                                                    <div class="rbt-round-icon bg-violet-opacity">
+                                                        <i class="feather-award"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="counter without-icon color-violet">
+                                                            <span class="odometer" data-count="7">{{Info.storedCourse.length}} </span>
+                                                        </h3>
+                                                        <span class="rbt-title-style-2 d-block">الإهتمامات </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Card  -->
+                                        <!-- Start Single Card  -->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-default-opacity">
+                                                <div class="inner">
+                                                    <div class="rbt-round-icon bg-primary-opacity">
+                                                        <i class="feather-dollar-sign"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="counter without-icon color-primary">
+                                                            <span class="odometer" data-count="30">{{Info.student.value}} د.ل</span>
+                                                        </h3>
+                                                        <span class="rbt-title-style-2 d-block"> المحفظة الإلكترونية</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Card  -->
+                                        <!-- Start Single Card  -->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-default-opacity">
+                                                <div class="inner">
+                                                    <div class="rbt-round-icon bg-secondary-opacity">
+                                                        <i class="feather-globe"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="counter without-icon color-secondary">
+                                                            <span class="odometer" data-count="10">{{Info.studentWalletPurchases.length}}</span>
+                                                        </h3>
+                                                        <span class="rbt-title-style-2 d-block">عمليات الشراء </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- End Single Card  -->
+                                        <!-- Start Single Card  -->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-default-opacity">
+                                                <div class="inner">
+                                                    <div class="rbt-round-icon bg-violet-opacity">
+                                                        <i class="feather-star"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="counter without-icon color-violet">
+                                                            <span class="odometer" data-count="7">{{Info.student.acountPoints}} </span>
+                                                        </h3>
+                                                        <span class="rbt-title-style-2 d-block">نقاط الحساب </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Card  -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!--Profile Info-->
+                        <div class="col-lg-9" v-if="state==1">
+                            <!-- Start Instructor Profile  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">البيانات الشخصية</h4>
+                                    </div>
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">تاريخ التسجيل</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.createdOn | moment}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">الإسم</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.name}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2"> إسم المستخدم</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.loginName}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">البريد الإلكتروني</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.email}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">رقم الهاتف</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.phone}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">الجنس</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2" v-if="Info.student.gender==1">ذكر</div>
+                                            <div class="rbt-profile-content b2" v-if="Info.student.gender==2">أنثي</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">المرحلة التعليمية</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.studentProfile.academicLevel}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">التخصص</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.studentProfile.academicSpecialization}}</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">قيمة المحفظة الإلكترونية</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.value}} د.ل</div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">إسم الجهاز المعتمد</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.machineName}} </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                    <!-- Start Profile Row  -->
+                                    <div class="rbt-profile-row row row--15 mt--15">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="rbt-profile-content b2">Bio</div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="rbt-profile-content b2">{{Info.student.aboutMe}} </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Profile Row  -->
+                                </div>
+                            </div>
+                            <!-- End Instructor Profile  -->
+
+                        </div>
+
+
+
+                        <!--Inrolled Course-->
+                        <div class="col-lg-9" v-if="state==2">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">الدورات التدريبية </h4>
+                                    </div>
+
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.tudentCourseInfo==0">
+                                        <div class="row g-5">
+                                            <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="inner">
+                                                            <div class="rbt-category mb--20">
+                                                                <a href="#">عـــذراً</a>
+                                                            </div>
+                                                            <h4 class="title mb--10">
+                                                                يـبـدو انـك لـم تـقـم بـالاشـتـراك فـي أي دورة تـدريـبـيـة حـتـي الأن
+                                                            </h4>
+                                                            <p class="mb--15">إذا كنت تواجه اي مشكلة يمكنك الإتصال بالإدارة</p>
+                                                            <div class="read-more-btn" dir="ltr">
+                                                                <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm"
+                                                                   style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;"
+                                                                   href="#"
+                                                                   @click.prevent="href('/Courses')">
+                                                                    <span data-text="Join Now">عرض الدورات التدريبية</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.studentCourseInfo!=0">
+                                        <div class="row g-5">
+                                            <!-- Start Single Course  -->
+                                            <div class="col-lg-4 col-md-6 col-12" v-for="item,index in Info.studentCourseInfo">
+                                                <div class="rbt-card variation-01 rbt-hover">
+                                                    <div class="rbt-card-img">
+                                                        <a href="#"  @click.prevent="href('/StudentsCoures'+'?'+'id='+item.id)">
+                                                            <img :src="ServerUrl+item.covePhotoPath" alt="Card image" v-if="item.covePhotoPath">
+                                                            <img src="assets/images/image/DefaultCoursePhoto.jpg" alt="Card image" v-if="!item.covePhotoPath">
+                                                        </a>
+                                                    </div>
+                                                    <div class="rbt-card-body">
+                                                        <div class="rbt-card-top">
+                                                            <div class="rbt-review">
+                                                                <div class="rating" v-if="item.rate==5">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==4">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==3">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==2">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==1">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <span class="rating-count"> ({{item.rateCount}} Reviews)</span>
+                                                            </div>
+                                                            <div class="rbt-bookmark-btn">
+                                                                <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <h4 class="rbt-card-title">
+                                                            <a href="#">{{item.name}}</a>
+                                                        </h4>
+                                                        <ul class="rbt-meta">
+                                                            <li dir="ltr">{{item.subject}}  <i class="feather-book"></i></li>
+                                                            <li dir="ltr">{{item.academicSpecialization}}  <i class="feather-award"></i></li>
+                                                            <li dir="ltr"> عدد الشباتر : {{item.shapterCount}}  <i class="feather-file"></i></li>
+                                                        </ul>
+
+                                                        <div class="rbt-progress-style-1 mb--20 mt--10">
+                                                            <div class="single-progress">
+                                                                <div style="display: flex; justify-content: space-between;">
+                                                                    <h6 class="rbt-title-style-2 mb--10">المنجز</h6>
+                                                                    <span class="rbt-title-style-2 progress-number"
+                                                                          style="text-align:left">{{item.shapterPresntage}}%</span>
+                                                                </div>
+
+                                                                <el-progress :percentage="item.shapterPresntage"></el-progress>
+
+                                                            </div>  
+                                                        </div>
+                                                        <div class="rbt-card-bottom">
+                                                            <a class="rbt-btn btn-sm bg-primary-opacity w-100 text-center" 
+                                                                @click.prevent="href('/StudentsCoures'+'?'+'id='+item.id)"
+                                                               href="#">مشاهدة الدورة </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Single Course  -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+
+
+
+                        <!--Stored Course-->
+                        <div class="col-lg-9" v-if="state==3">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">الدورات التدريبية المحفوظة </h4>
+                                    </div>
+
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.storedCourse==0">
+                                        <div class="row g-5">
+                                            <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="inner">
+                                                            <div class="rbt-category mb--20">
+                                                                <a href="#">عـــذراً</a>
+                                                            </div>
+                                                            <h4 class="title mb--10">
+                                                                يـبـدو انـك لـم تـقـم بـحـفـظ  أي دورة تـدريـبـيـة حـتـي الأن
+                                                            </h4>
+                                                            <p class="mb--15">إذا كنت تواجه اي مشكلة يمكنك الإتصال بالإدارة</p>
+                                                            <div class="read-more-btn" dir="ltr">
+                                                                <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm"
+                                                                   style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;"
+                                                                   href="#"
+                                                                   @click.prevent="href('/Courses')">
+                                                                    <span data-text="Join Now">عرض الدورات التدريبية</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.storedCourse!=0">
+                                        <div class="row g-5">
+                                            <!-- Start Single Course  -->
+                                            <div class="col-lg-4 col-md-6 col-12" v-for="item,index in Info.studentCourseInfo">
+                                                <div class="rbt-card variation-01 rbt-hover">
+                                                    <div class="rbt-card-img">
+                                                        <a href="#" @click.prevent="href('/CourseInfo'+'?'+'id='+item.id)">
+                                                            <img :src="ServerUrl+item.covePhotoPath" alt="Card image" v-if="item.covePhotoPath">
+                                                            <img src="assets/images/image/DefaultCoursePhoto.jpg" alt="Card image" v-if="!item.covePhotoPath">
+                                                        </a>
+                                                    </div>
+                                                    <div class="rbt-card-body">
+                                                        <div class="rbt-card-top">
+                                                            <div class="rbt-review">
+                                                                <div class="rating" v-if="item.rate==5">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==4">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==3">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==2">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="rating" v-if="item.rate==1">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <span class="rating-count"> ({{item.rateCount}} Reviews)</span>
+                                                            </div>
+                                                            <div class="rbt-bookmark-btn">
+                                                                <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <h4 class="rbt-card-title">
+                                                            <a href="#">{{item.name}}</a>
+                                                        </h4>
+                                                        <ul class="rbt-meta">
+                                                            <li dir="ltr">{{item.subject}}  <i class="feather-book"></i></li>
+                                                            <li dir="ltr">{{item.academicSpecialization}}  <i class="feather-award"></i></li>
+                                                            <li dir="ltr"> عدد الشباتر : {{item.shapterCount}}  <i class="feather-file"></i></li>
+                                                        </ul>
+
+
+                                                        <div class="rbt-card-bottom">
+                                                            <a class="rbt-btn btn-sm bg-primary-opacity w-100 text-center" href="#"
+                                                               @click.prevent="href('/CourseInfo'+'?'+'id='+item.id)">عرض الدورة التدريبية</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Single Course  -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+
+
+                        <!--Review Course-->
+                        <div class="col-lg-9" v-if="state==4">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">تقيماتي</h4>
+                                    </div>
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.courseReview==0">
+                                        <div class="row g-5">
+                                            <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="inner">
+                                                            <div class="rbt-category mb--20">
+                                                                <a href="#">عـــذراً</a>
+                                                            </div>
+                                                            <h4 class="title mb--10">
+                                                                يـبـدو انـك لـم تـقـم بالاعجاب   بأي دورة تـدريـبـيـة حـتـي الأن
+                                                            </h4>
+                                                            <p class="mb--15">إذا كنت تواجه اي مشكلة يمكنك الإتصال بالإدارة</p>
+                                                            <div class="read-more-btn" dir="ltr">
+                                                                <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm"
+                                                                   style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;"
+                                                                   href="#"
+                                                                   @click.prevent="href('/Courses')">
+                                                                    <span data-text="Join Now">عرض الدورات التدريبية</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="rbt-dashboard-table table-responsive mobile-table-750" v-if="Info.courseReview!=0">
+                                        <table class="rbt-table table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>الدورة التدريبية</th>
+                                                    <th> المدرب</th>
+                                                    <th>التقيم</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item,index in Info.courseReview">
+                                                    <th>
+                                                        <span class="b3"><a href="#">{{item.name}}</a></span>
+                                                        <p class="b2" style=" font-size: 13px;">{{item.academicLevel}} - {{item.academicSpecialization}}</p>
+                                                    </th>
+                                                    <th>
+                                                        <span class="b3">
+                                                            <a href="#"
+                                                               style="font-size: 13px; font-weight: bold; ">{{item.instructorName}}</a>
+                                                        </span>
+                                                    </th>
+                                                    <td>
+                                                        <div class="rbt-review">
+                                                            <div class="rating" v-if="item.rate==5">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                            </div>
+                                                            <div class="rating" v-if="item.rate==4">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                            </div>
+                                                            <div class="rating" v-if="item.rate==3">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                            </div>
+                                                            <div class="rating" v-if="item.rate==2">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                            </div>
+                                                            <div class="rating" v-if="item.rate==1">
+                                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                            </div>
+                                                            <span class="rating-count">{{item.rateCount}} </span>
+                                                        </div>
+                                                        <p class="b2" style=" font-size: 13px;">{{item.message}}</p>
+                                                    </td>
+                                                    <td>
+                                                        {{item.createdOn | moment}}
+                                                    </td>
+                                                </tr>
+
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+
+
+                        <!--Exam Course-->
+                        <div class="col-lg-9" v-if="state==5">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">الإختبارات</h4>
+                                    </div>
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.exam==0">
+                                        <div class="row g-5">
+                                            <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="inner">
+                                                            <div class="rbt-category mb--20">
+                                                                <a href="#">عـــذراً</a>
+                                                            </div>
+                                                            <h4 class="title mb--10">
+                                                                يـبـدو انـك لـم تـقـم بالاشتراك   في أي إختبار   حـتـي الأن
+                                                            </h4>
+                                                            <p class="mb--15">إذا كنت تواجه اي مشكلة يمكنك الإتصال بالإدارة</p>
+                                                            <div class="read-more-btn" dir="ltr">
+                                                                <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm"
+                                                                   style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;"
+                                                                   href="#"
+                                                                   @click.prevent="href('/Courses')">
+                                                                    <span data-text="Join Now">عرض الدورات التدريبية</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="rbt-dashboard-table table-responsive mobile-table-750" v-if="Info.exam!=0">
+                                        <table class="rbt-table table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>بيانات الاختبار</th>
+                                                    <th> عدد الاسئلة</th>
+                                                    <th>النتيجة</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="item,index in Info.exam">
+                                                    <th>
+                                                        <p class="b3" style=" font-size: 13px; margin-bottom: 0px;">{{item.exmaInfo.name}}</p>
+                                                        <p class="b3" style=" font-size: 13px; margin-bottom: 0px;">
+                                                            {{item.exmaInfo.courseName}} - {{item.exmaInfo.instructorName}}
+                                                        </p>
+                                                        <p class="b3" style=" font-size: 13px; margin-bottom: 0px;">
+                                                            {{item.exmaInfo.academicLevel}} - {{item.exmaInfo.academicSpecialization}}
+                                                        </p>
+                                                        <p class="b3" style=" font-size: 13px; margin-bottom: 0px;">
+                                                            {{item.exmaInfo.subjcet}} - {{item.exmaInfo.shapterName}}
+                                                        </p>
+                                                        <p class="b3" style=" font-size: 13px; margin-bottom: 0px;">
+                                                            {{item.exmaInfo.createdOn | moment}}
+                                                        </p>
+                                                    </th>
+                                                    <th>
+                                                        <span class="b3">
+                                                            <a href="#"
+                                                               style="font-size: 13px; font-weight: bold; ">{{item.exmaInfo.countQuestions}}</a>
+                                                        </span>
+                                                    </th>
+                                                    <td>
+                                                        <span class="b3">
+                                                            <a href="#"
+                                                               style="font-size: 13px; font-weight: bold; ">{{item.exmaInfo.marck}}/{{item.marck}}</a>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <p class="b3 mb--5">
+                                                            <span v-if="item.isPassTest" class="rbt-badge-5 bg-color-success-opacity color-success">تحصلت على درجة النجاح &#x1F389;</span>
+                                                            <span v-if="!item.isPassTest" class="rbt-badge-5 bg-color-danger-opacity color-danger">لم تتحصل على درجة النجاح &#x1F614;   </span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+
+
+
+                        <!--Order History-->
+                        <div class="col-lg-9" v-if="state==6">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">الإشتراكات</h4>
+                                    </div>
+
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.studentWalletPurchases==0">
+                                        <div class="row g-5">
+                                            <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="inner">
+                                                            <div class="rbt-category mb--20">
+                                                                <a href="#">عـــذراً</a>
+                                                            </div>
+                                                            <h4 class="title mb--10">
+                                                                يـبـدو انـك لـم تـقـم بالاشتراك   في أي إختبار   حـتـي الأن
+                                                            </h4>
+                                                            <p class="mb--15">إذا كنت تواجه اي مشكلة يمكنك الإتصال بالإدارة</p>
+                                                            <div class="read-more-btn" dir="ltr">
+                                                                <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm"
+                                                                   style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;"
+                                                                   href="#"
+                                                                   @click.prevent="href('/Courses')">
+                                                                    <span data-text="Join Now">عرض الدورات التدريبية</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="rbt-dashboard-table table-responsive mobile-table-750"
+                                         v-if="Info.studentWalletPurchases!=0">
+                                        <table class="rbt-table table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>الدورة التدريبية</th>
+                                                    <th>التاريخ</th>
+                                                    <th>فيمة الدورة التدريبية </th>
+                                                    <th>المدفوع </th>
+                                                    <th>الحالة</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr v-for="item,index in Info.studentWalletPurchases">
+                                                    <th>{{index+1}}</th>
+                                                    <td>{{item.course.name}}</td>
+                                                    <td>{{item.createdOn | moment}}</td>
+                                                    <td>{{item.coursePrice}}</td>
+                                                    <td>{{item.value}}</td>
+                                                    <td><span class="rbt-badge-5 bg-color-success-opacity color-success">Success</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+
+
+                        <!--Wallet History-->
+                        <div class="col-lg-9" v-if="state==7">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">
+                                            حركات المحفظة
+                                            <span style="float: left; direction: ltr; ">
+                                                <a class="rbt-btn bg-coral-opacity hover-icon-reverse btn-sm" href="#" 
+                                                   @click.prevent="charge=1" v-if="charge==0">
+                                                    <span class="icon-reverse-wrapper">
+                                                        <span class="btn-text">شحن المحفظة الإلكترونية</span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                    </span>
+                                                </a>
+                                                <a class="rbt-btn bg-coral-opacity hover-icon-reverse btn-sm" href="#" 
+                                                   @click.prevent="charge=0" v-if="charge==1">
+                                                    <span class="icon-reverse-wrapper">
+                                                        <span class="btn-text">رجوع</span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                    </span>
+                                                </a>
+                                            </span>
+                                        </h4>
+                                    </div>
+
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="Info.studentWalletTransactions==0">
+                                        <div class="row g-5">
+                                            <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="inner">
+                                                            <div class="rbt-category mb--20">
+                                                                <a href="#">عـــذراً</a>
+                                                            </div>
+                                                            <h4 class="title mb--10">
+                                                                يـبـدو انـك لـم تـقـم بأي حركة   حـتـي الأن
+                                                            </h4>
+                                                            <p class="mb--15">إذا كنت تواجه اي مشكلة يمكنك الإتصال بالإدارة</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         v-if="charge==1">
+                                        <div class="">
+                                            <div class="row align-items-center">
+                                                <br />
+                                                <br />
+                                                <div class="col-lg-12">
+                                                    <!-- Start Profile Row  -->
+                                                    <el-form :model="ruleForm"
+                                                             :rules="rules"
+                                                             ref="ruleForm"
+                                                             class="rbt-profile-row rbt-default-form row row--15 text-center">
+                                                        <div class="col-12" style="margin-top:20px">
+                                                            <div class="section-title text-center">
+                                                                <h2 class="rbt-title-style-3">شحن المحفظة الإلكترونية </h2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12" style="margin-top:30px">
+                                                            <div class="rbt-form-group">
+                                                                <el-form-item prop="Password">
+                                                                    <label for="voicherCard">
+                                                                        الرقم السري الخاص بكرت التعبئة
+                                                                        <span style="color:red">*</span>
+                                                                    </label>
+                                                                    <input style="text-align: center;"
+                                                                           id="VoicherCardNumber"
+                                                                           type="number" v-model="VoicherCardNumber"
+                                                                           placeholder="الرقم السري">
+                                                                </el-form-item>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mt--10">
+                                                            <div class="rbt-form-group" dir="ltr">
+                                                                <a class="rbt-btn btn-gradient btn-sm"
+                                                                   href="#"
+                                                                   @click.prevent="submitPasswordForm('ruleForm')"
+                                                                   style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">تعبئة الكرت </a>
+                                                            </div>
+                                                        </div>
+                                                    </el-form>
+                                                    <!-- End Profile Row  -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="rbt-dashboard-table table-responsive mobile-table-750"
+                                         v-if="Info.studentWalletPurchases!=0 && charge==0">
+                                        <table class="rbt-table table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>طريقة الدفع</th>
+                                                    <th>القيمة</th>
+                                                    <th>التاريخ </th>
+                                                    <th>الحالة</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr v-for="item,index in Info.studentWalletTransactions">
+                                                    <th>{{index+1}}</th>
+                                                    <td>{{item.name}}</td>
+                                                    <td>{{item.value}}</td>
+                                                    <td>{{item.createdOn | moment}}</td>
+                                                    <td><span class="rbt-badge-5 bg-color-success-opacity color-success">Success</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+
+
+                        <!--User Manul History-->
+                        <div class="col-lg-9" v-if="state==8">
+                            <!-- Start Enrole Course  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">دليل الاستخدام </h4>
+                                    </div>
+
+
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4"
+                                         >
+                                        <div class="row g-5">
+                                            <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="inner">
+                                                            <div class="rbt-category mb--20">
+                                                                <a href="#">دليل الاستخدام</a>
+                                                            </div>
+                                                            <h4 class="title mb--10">
+                                                               طريقة شحن المحفظة
+                                                            </h4>
+                                                            <p class="mb--15">إذا كنت تواجه اي مشكلة يمكنك الإتصال بالإدارة</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- End Enrole Course  -->
+                        </div>
+                        
+    
+    
+                        <!--Setting -->
+                        <div class="col-lg-9" v-if="state==9">
+                            <!-- Start Instructor Profile  -->
+                            <div class="rbt-dashboard-content bg-color-white rbt-shadow-box">
+                                <div class="content">
+
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">الإعدادات</h4>
+                                    </div>
+
+                                    <div class="advance-tab-button mb--30">
+                                        <ul class="nav nav-tabs tab-button-style-2 justify-content-start" id="settinsTab-4" role="tablist">
+                                            <li role="presentation">
+                                                <a href="#" class="tab-button active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="true">
+                                                    <span class="title">البيانات الشخصية</span>
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a href="#" class="tab-button" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" role="tab" aria-controls="password" aria-selected="false">
+                                                    <span class="title">كلمة المرور</span>
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a href="#" class="tab-button" id="social-tab" data-bs-toggle="tab" data-bs-target="#social" role="tab" aria-controls="social" aria-selected="false">
+                                                    <span class="title">إعدادات الحساب</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="rbt-dashboard-content-wrapper">
+                                                <div class="tutor-bg-photo bg_image bg_image--23 height-245"></div>
+                                                <!-- Start Tutor Information  -->
+                                                <div class="rbt-tutor-information">
+                                                    <div class="rbt-tutor-information-left">
+                                                        <div class="thumbnail rbt-avatars size-lg position-relative">
+                                                            <!--<img src="assets/images/team/avatar-2.jpg" alt="Instructor">-->
+                                                            <img :src="ServerUrl+loginDetails.imagePath" alt="Instructor"  v-if="loginDetails.imagePath">
+                                                            <img src="assets/images/image/StudentLogo.jpg" alt="Instructor"  v-if="!loginDetails.imagePath">
+                                                            <div class="rbt-edit-photo-inner">
+                                                                <el-upload :on-change="SelectAttachment">
+                                                                    <button class="rbt-edit-photo" title="Upload Photo">
+                                                                        <i class="feather-camera"></i>
+                                                                    </button>
+                                                                </el-upload>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--<div class="rbt-tutor-information-right">
+                                                        <div class="tutor-btn">
+                                                            <a class="rbt-btn btn-sm btn-border color-white radius-round-10" href="#">Edit Cover Photo</a>
+                                                        </div>
+                                                    </div>-->
+                                                </div>
+                                                <!-- End Tutor Information  -->
+                                            </div>
+                                            <!-- Start Profile Row  -->
+                                            <el-form :model="ruleForm"
+                                                     :rules="rules"
+                                                     ref="ruleForm"
+                                                      class="rbt-profile-row rbt-default-form row row--15">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="FirstName">
+                                                            <label for="firstname"> الإسم <span style="color:red">*</span> </label>
+                                                            <input id="firstname" type="text" v-model="ruleForm.FirstName">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="FatherName">
+                                                            <label for="FatherName"> اسم الأب <span style="color:red">*</span> </label>
+                                                            <input id="FatherName" type="text" v-model="ruleForm.FatherName">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="SirName">
+                                                            <label for="SirName"> اللقب <span style="color:red">*</span> </label>
+                                                            <input id="SirName" type="text" v-model="ruleForm.SirName">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="LoginName">
+                                                            <label for="LoginName"> إسم المستخدم <span style="color:red">*</span> </label>
+                                                            <input id="LoginName" type="text" v-model="ruleForm.LoginName">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="Email">
+                                                            <label for="email"> البريد الإلكتروني <span style="color:red">*</span> </label>
+                                                            <input id="email" type="email" v-model="ruleForm.Email">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="Phone">
+                                                            <label for="Phone"> رقم الهاتف <span style="color:red">*</span> </label>
+                                                            <input id="Phone" type="email" v-model="ruleForm.Phone">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="CollageId">
+                                                            <label for="CollageId"> رقم القيد الجامعي <span style="color:red">*</span> </label>
+                                                            <input id="CollageId" type="email" v-model="ruleForm.CollageId">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="filter-select rbt-modern-select">
+                                                        <label for="displayname" class="">Display name publicly as</label>
+                                                        <select id="displayname" class="w-100">
+                                                            <option>Emily Hannah</option>
+                                                            <option>John</option>
+                                                            <option>Due</option>
+                                                            <option>Due John</option>
+                                                            <option>johndue</option>
+                                                        </select>
+                                                    </div>
+                                                </div>-->
+                                                <div class="col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="AboutMe">
+                                                            <label for="Bio"> Bio <span style="color:red">*</span> </label>
+                                                            <textarea id="Bio" cols="20" rows="5" v-model="ruleForm.AboutMe"></textarea>
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt--20">
+                                                    <div class="rbt-form-group" dir="ltr">
+                                                        <a class="rbt-btn btn-gradient btn-sm" 
+                                                           href="#" 
+                                                           @click.prevent="submitPersonalInfoForm('ruleForm')"
+                                                           style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;"
+                                                           >تعديل البيانات</a>
+                                                    </div>
+                                                </div>
+                                            </el-form>
+                                            <!-- End Profile Row  -->
+                                        </div>
+
+                                        <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                                            <!-- Start Profile Row  -->
+                                            <el-form :model="ruleForm"
+                                                     :rules="rules"
+                                                      ref="ruleForm"
+                                                   class="rbt-profile-row rbt-default-form row row--15">
+                                                <div class="col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="Password">
+                                                            <label for="Password"> كلمة المرور الحالية <span style="color:red">*</span> </label>
+                                                            <input id="Password" type="password" v-model="ruleForm.Password" 
+                                                                   placeholder="كلمة المرور">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="NewPassword">
+                                                            <label for="NewPassword"> كلمة المرور الجديدة <span style="color:red">*</span> </label>
+                                                            <input id="NewPassword" type="password" v-model="ruleForm.NewPassword"
+                                                                   placeholder="كلمة المرور">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="rbt-form-group">
+                                                        <el-form-item prop="NewPassword">
+                                                            <label for="ConfirmPassword"> تأكيد كلمة المرور  <span style="color:red">*</span> </label>
+                                                            <input id="ConfirmPassword" type="password" v-model="ruleForm.ConfirmPassword"
+                                                                   placeholder="كلمة المرور">
+                                                        </el-form-item>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt--10">
+                                                    <div class="rbt-form-group" dir="ltr">
+                                                        <a class="rbt-btn btn-gradient btn-sm"
+                                                           href="#"
+                                                           @click.prevent="submitPasswordForm('ruleForm')"
+                                                           style=" background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;">تعديل البيانات</a>
+                                                    </div>
+                                                </div>
+                                            </el-form>
+                                            <!-- End Profile Row  -->
+                                        </div>
+
+                                        <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+                                            <!-- Start Profile Row  -->
+                                            <div class="content">
+                                                <!-- Start Profile Row  -->
+                                                <div class="rbt-profile-row row row--15">
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <div class="rbt-profile-content b2">تاريخ إنشاء الحساب</div>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8">
+                                                        <div class="rbt-profile-content b2">{{Info.student.createdOn | moment}}</div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Profile Row  -->
+                                                <!-- Start Profile Row  -->
+                                                <div class="rbt-profile-row row row--15 mt--15">
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <div class="rbt-profile-content b2">إسم الجهاز المعتمد</div>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8">
+                                                        <div class="rbt-profile-content b2">
+                                                            يمكن الدخول للنظام من الجهاز الحالي فقط
+                                                            <a class="rbt-btn bg-coral-opacity hover-icon-reverse btn-sm" 
+                                                               dir="ltr"
+                                                               href="#"
+                                                               @click.prevent="ChangeDeviceRequest()">
+                                                                <span class="icon-reverse-wrapper">
+                                                                    <span class="btn-text">تقديم طلب تغير الجهاز</span>
+                                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                                </span>
+                                                            </a>
+
+                                                        </div>
+                                                       
+                                                    </div>
+                                                </div>
+                                                <!-- End Profile Row  -->
+                                                <!-- Start Profile Row  -->
+                                                <div class="rbt-profile-row row row--15 mt--15">
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <div class="rbt-profile-content b2"> أخر عملية تسجيل دخول</div>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8">
+                                                        <div class="rbt-profile-content b2">{{Info.student.lastLoginOn | moment}}</div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- End Profile Row  -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Instructor Profile  -->
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Card Style -->
+    <div class="rbt-separator-mid">
+        <div class="container">
+            <hr class="rbt-separator m-0">
+        </div>
+    </div>
+
+
+
+</div>

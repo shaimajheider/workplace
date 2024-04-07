@@ -1,0 +1,221 @@
+﻿
+
+
+<div>
+    
+    <main class="main-content main-content-bg mt-0">
+        <div class="page-header min-vh-100" style="background-image: url('/assets/img/1/1.jpg');">
+            <span class="mask bg-gradient-dark opacity-6"></span>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-7">
+                        <div class="card border-0 mb-0">
+                            <div class="card-header bg-transparent">
+                                <h5 class="text-dark text-center mt-2 mb-3">{{WebSiteName}} </h5>
+                                <div class="btn-wrapper text-center">
+                                    <br />
+                                    <!--<a href="javascript:;" class="btn btn-neutral btn-icon btn-sm mb-0">
+                                        <img class="w-30" src="/assets/img/logos/github.svg">
+                                        Github
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-neutral btn-icon btn-sm mb-0">
+                                        <img class="w-30" src="/assets/img/logos/google.svg">
+                                        Google</span>
+                                    </a>-->
+                                </div>
+                            </div>
+                            <div class="card-body px-lg-5 pt-0">
+                                <div class="text-center text-muted mb-4">
+                                    <small>{{SystemName}} ||  دخول المخولين </small>
+                                </div>
+                                <form role="form" class="text-start">
+                                    <div class="mb-3">
+                                        <input type="email"
+                                               v-model="form.Email"
+                                               class="form-control"
+                                               placeholder="Email"
+                                               aria-label="Email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" 
+                                               v-on:keyup.enter="login()"
+                                               v-model="form.Password"
+                                               class="form-control"
+                                               placeholder="Password"
+                                               aria-label="Password">
+                                    </div>
+                                    <!--<div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                                    </div>-->
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-primary w-100 my-4 mb-2" @click.prevent="login()">تسجيل الدخول</button>
+                                    </div>
+                                    <div class="mb-2 position-relative text-center">
+                                        <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
+                                            
+                                        </p>
+                                    </div>
+                                    <!--<div class="text-center">
+                                        <button type="button" class="btn bg-gradient-dark w-100 mt-2 mb-4">Sign up</button>
+                                    </div>-->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+    <!--<footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-4 mx-auto text-center">
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Company
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        About Us
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Team
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Products
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Blog
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Pricing
+                    </a>
+                </div>
+                <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                        <span class="text-lg fab fa-dribbble"></span>
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                        <span class="text-lg fab fa-twitter"></span>
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                        <span class="text-lg fab fa-instagram"></span>
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                        <span class="text-lg fab fa-pinterest"></span>
+                    </a>
+                    <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+                        <span class="text-lg fab fa-github"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 mx-auto text-center mt-1">
+                    <p class="mb-0 text-secondary">
+                        Copyright ©-->
+                        <!--<script>document.write(new Date().getFullYear())</script>--> <!--Soft by Creative Tim.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>-->
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--<div class="login-page sidebar-mini">
+    <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute" dir="rtl">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <a class="navbar-brand" style="color:black;font-weight:bold;">ادارة الكلى  / دخـول المخولين</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            </div>
+        </div>
+    </nav>-->
+    <!-- End Navbar -->
+    <!--<div class="wrapper wrapper-full-page ">
+        <div class="full-page section-image" style=" background-image: url('./img/BackgroundImage.png'); height: auto; background-color: none;">-->
+        <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+        <!--<div class="content">
+            <div class="container">
+                <div class="col-md-4 ml-auto mr-auto">
+                    <form class="form">
+                        <div class="card card-login card-plain">
+                            <div class="card-header ">
+                                <div class="logo-container" style=" width: 200px;">
+                                    <img src="/assets/logo.jpg" alt="" style="max-width: 170%!important;">
+                                </div>
+                            </div>
+                            <div class="card-body ">
+                                <div class="input-group no-border form-control-lg">
+                                    <span class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </div>
+                                    </span>
+                                    <input  v-on:keyup.enter="login()" type="text" class="form-control" 
+                                               id="inputEmail"
+                                               v-model="form.Email"
+                                               placeholder="البريد الالكتروني / اسم المستخدم"
+                                               required
+                                               autofocus
+                                           >
+                                </div>
+                                <div class="input-group no-border form-control-lg">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="now-ui-icons text_caps-small"></i>
+                                        </div>
+                                    </div>
+                                    <input  v-on:keyup.enter="login()"  type="password" placeholder="الرقم السري" class="form-control"
+                                               id="inputPassword"
+                                               v-model="form.Password"
+                                               required
+                                           >
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <a href="#" class="btn btn-primary btn-round btn-lg btn-block mb-3" @click.prevent="login()">تسجيل الدخول</a>
+                                <div class="pull-left">-->
+                                    <!--<h6><a href="https://qac.codeexperts.ly/" class="link footer-link">انشاء حساب جديد</a></h6>-->
+                                <!--</div>-->
+                                <!--<div class="pull-right">
+                                    <h6><a href="#pablo" class="link footer-link">Need Help?</a></h6>
+                                </div>-->
+                            <!--</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class=" container-fluid ">
+                <div class="credits ml-auto">
+                    <span class="copyright" style="color: black; font-weight: bold;">
+                        ©
+                        <script type="application/javascript">
+                                    {{Date().toLocaleString().split(" ")[3]}}
+                        </script>حقوق الطبع والنشر محفوظه<i class="fa fa-heart heart" style="color:red;"></i> شركة الرواق للاتصالات وتقنية المعلومات
+                    </span>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+</div>-->

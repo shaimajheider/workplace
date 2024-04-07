@@ -1,0 +1,40 @@
+﻿
+@import "../public/element-ui/lib/theme-chalk/index.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css";
+
+
+
+@font-face {
+    font-family: 'DroidArabicKufiRegular';
+    src: url('../public/assets/fonts/DroidKufi-Regular.eot') format('embedded-opentype'), url('../public/assets/fonts/DroidKufi-Regular.woff') format('woff'), url('../public/assets/fonts/DroidKufi-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+input {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+textarea {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+* {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+button {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+body {
+    font-family: 'DroidArabicKufiRegular' !important;
+}
+
+a {
+    font-family: 'DroidArabicKufiRegular' !important;
+}
+
+li {
+    font-family: 'DroidArabicKufiRegular';
+}

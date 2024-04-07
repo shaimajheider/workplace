@@ -1,0 +1,320 @@
+﻿
+
+<div dir="rtl">
+
+    <div class="rbt-lesson-area bg-color-white">
+        <div class="rbt-lesson-content-wrapper">
+            <div class="rbt-lesson-leftsidebar">
+                <div class="rbt-course-feature-inner rbt-search-activation">
+                    <div class="section-title">
+                        <h4 class="rbt-title-style-3">محتويات الدورة التدريبية</h4>
+                    </div>
+
+                    <div class="lesson-search-wrapper">
+                        <img src="assets/images/image/8888.png" alt="Education Logo Images">
+                    </div>
+
+                    <hr class="mt--10">
+
+                    <div class="rbt-accordion-style rbt-accordion-02 for-right-content accordion">
+
+
+                        <el-collapse class="accordion-item card" style="background-color:transparent !important">
+                            <el-collapse-item :title="item.name" :name="index+1" v-for="item,index in Info" style="background-color: transparent !important;">
+                                <div id="#collapseTwo1" class="accordion-collapse collapse show "
+                                     style="background-color: transparent !important;"
+                                     aria-labelledby="headingTwo1" data-bs-parent="#accordionExampleb2">
+                                    <div class="accordion-body card-body pr--0">
+                                        <ul class="rbt-course-main-content liststyle">
+                                            <li v-for="lecture,index in item.lecture" v-if="item.lecture!=0  ">
+                                                <el-collapse accordion1 class="accordion1">
+                                                    <el-collapse-item :title="lecture.name" :name="lecture+1">
+                                                        <a href="#" @click.prevent="OpenLecture(attach.id,1)"
+                                                           v-for="attach,index in lecture.lectureAttashments"
+                                                           v-if="lecture.lectureAttashments && (attach.type==1 || attach.type==3)">
+                                                            <div class="course-content-left" v-if="attach.isWathcedBefore==0">
+                                                                <i class="feather-play-circle"></i>
+                                                                <span class="text">  {{attach.name}}</span>
+                                                            </div>
+                                                            <div class="course-content-left" v-if="attach.isWathcedBefore!=0">
+                                                                <i class="fa fa-check-circle-o"
+                                                                   style="color: green; font-size: 18px;"
+                                                                   aria-hidden="true"></i>
+                                                                <span class="text">  {{attach.name}}</span>
+                                                            </div>
+                                                            <div class="course-content-right">
+                                                                <span class="course-lock"><i class="feather-unlock"></i></span>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" @click.prevent="OpenLecturePDF(attach.path)"
+                                                           v-for="attach,index in lecture.lectureAttashments"
+                                                           v-if="lecture.lectureAttashments && attach.type==2">
+                                                            <div class="course-content-left">
+                                                                <i class="feather-file-text"></i>
+                                                                <span class="text">  {{attach.name}}</span>
+                                                            </div>
+                                                            <div class="course-content-right">
+                                                                <span class="course-lock"><i class="feather-unlock"></i></span>
+                                                            </div>
+                                                        </a>
+                                                    </el-collapse-item>
+                                                   
+                                                </el-collapse>
+
+
+                                                <!--<a href="#" @click.prevent="OpenLecture(lecture.lectureAttashments[0].path,1)"
+                                                   v-if="lecture.lectureAttashments">
+                                                    <div class="course-content-left">
+                                                        <i class="feather-play-circle"></i>
+                                                        <span class="text"> {{lecture.name}}</span>
+                                                    </div>
+                                                    <div class="course-content-right">
+                                                        <span class="course-lock"><i class="feather-lock"></i></span>
+                                                    </div>
+                                                </a>-->
+                                            </li>
+                                            <li v-for="exam,index in item.exams" v-if="item.exams!=0">
+                                                <a href="#"  @click.prevent="OpenLecture('path',2)" >
+                                                    <div class="course-content-left">
+                                                        <i class="feather-file-text"></i>
+                                                        <span class="text">{{exam.name}}</span>
+                                                    </div>
+                                                    <div class="course-content-right">
+                                                        <span class="course-lock"><i class="feather-lock"></i></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </el-collapse-item>
+                        </el-collapse>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="rbt-lesson-rightsidebar overflow-hidden lesson-video">
+                <!--<div class="lesson-top-bar">
+        <div class="lesson-top-left">
+            <div class="rbt-lesson-toggle">
+                <button class="lesson-toggle-active btn-round-white-opacity" title="Toggle Sidebar"><i class="feather-arrow-left"></i></button>
+            </div>
+            <h5>The Complete Histudy 2023: From Zero to Expert!</h5>
+        </div>
+        <div class="lesson-top-right">
+            <div class="rbt-btn-close">
+                <a href="course-details.html" title="Go Back to Course" class="rbt-round-btn"><i class="feather-x"></i></a>
+            </div>
+        </div>
+    </div>-->
+
+                <div class="inner" v-if="LectureOrExam==0">
+                    <div class="plyr__video-embed rbtplayer">
+                        <img src="assets/images/image/133.jpg" alt="Education Logo Images">
+                        <!--<img src="assets/images/image/13.jpg" alt="Education Logo Images">-->
+                    </div>
+                </div>
+
+
+                <div class="inner" v-if="LectureOrExam==1">
+                    <div class="plyr__video-embed rbtplayer" v-if="LecturePath && LectureType==1">
+
+                        <iframe :src="'https://player.vdocipher.com/v2/?otp=' + Auth.otp+'&playbackInfo='+ Auth.playbackInfo"
+                                style="border:0;max-width:100%;position:absolute;top:0;left:0;height:100%;width:100%;"
+                                allow="encrypted-media"
+                                allowfullscreen>
+                        </iframe>
+
+
+                        <!--<video allow="fullscreen"
+                   frameBorder="0"
+                   width="100%"
+                   height="700"
+                   controls
+                   controlsList="nodownload">
+                <source :src="LecturePath" />
+            </video>-->
+                        <!--<iframe :src="LecturePath" allowfullscreen allow="autoplay"></iframe>-->
+                    </div>
+                    <div class="plyr__video-embed rbtplayer" v-if="LecturePath && LectureType!=1">
+                        <img :src="LecturePath" alt="Education Logo Images">
+                    </div>
+                    <div class="plyr__video-embed rbtplayer" v-if="!LecturePath">
+                        <img src="assets/images/image/405.jpg" alt="Education Logo Images">
+                    </div>
+                    <!--<div class="content">
+            <div class="section-title">
+                <h4>About Lesson</h4>
+                <p>
+                    Let us analyze the greatest hits of the past and learn what makes these tracks so
+                    special.
+                </p>
+            </div>
+        </div>-->
+                </div>
+
+
+
+                <div class="rbt-lesson-rightsidebar overflow-hidden" v-if="LectureOrExam==2">
+                    <div class="plyr__video-embed rbtplayer" v-if="!LecturePath">
+                        <img src="assets/images/image/00.jpg" alt="Education Logo Images">
+                    </div>
+                </div>
+
+                <div class="rbt-lesson-rightsidebar overflow-hidden" v-if="LectureOrExam==40">
+                    <div class="plyr__video-embed rbtplayer" v-if="!LecturePath">
+                        <img :src="SelectedPDFPath" alt="Education Logo Images">
+                    </div>
+                </div>
+
+
+                <div class="rbt-lesson-rightsidebar overflow-hidden" v-if="LectureOrExam==10">
+                    <div class="lesson-top-bar"
+                         style="background: -webkit-linear-gradient(left, rgb(24, 90, 157), rgb(67, 206, 162)) !important;
+      height: 77px; ">
+                        <div class="lesson-top-left">
+                            <div class="rbt-lesson-toggle">
+                                <!--<button class="lesson-toggle-active btn-round-white-opacity" title="Toggle Sidebar"><i class="feather-arrow-left"></i></button>-->
+                            </div>
+                            <h5>بيانات الاختبار </h5>
+                        </div>
+                        <!--<div class="lesson-top-right">
+                <div class="rbt-btn-close">
+                    <a href="course-details.html" title="Go Back to Course" class="rbt-round-btn"><i class="feather-x"></i></a>
+                </div>
+            </div>-->
+                    </div>
+                    <div class="inner">
+                        <div class="content">
+                            <form id="quiz-form" class="quiz-form-wrapper">
+                                <!-- Start Single Quiz  -->
+                                <div id="question-1" class="question">
+                                    <div class="quize-top-meta">
+                                        <div class="quize-top-left">
+                                            <span>Questions No: <strong>1/5</strong></span>
+                                            <span>Attempts Allowed: <strong>1</strong></span>
+                                        </div>
+                                        <div class="quize-top-right">
+                                            <span>مدة الإختبار : <strong>بدون مدة</strong></span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="rbt-single-quiz">
+                                        <h4>1. What is the capital of France?</h4>
+                                        <div class="row g-3 mt--10">
+                                            <div class="col-lg-6">
+                                                <p class="rbt-checkbox-wrapper mb--5">
+                                                    <input id="rbt-checkbox-1" name="rbt-checkbox-1" type="checkbox" value="yes">
+                                                    <label for="rbt-checkbox-1">Option One</label>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p class="rbt-checkbox-wrapper">
+                                                    <input id="rbt-checkbox-2" name="rbt-checkbox-2" type="checkbox" value="yes">
+                                                    <label for="rbt-checkbox-2">Option Two</label>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p class="rbt-checkbox-wrapper">
+                                                    <input id="rbt-checkbox-3" name="rbt-checkbox-3" type="checkbox" value="yes">
+                                                    <label for="rbt-checkbox-3">Option Three</label>
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p class="rbt-checkbox-wrapper">
+                                                    <input id="rbt-checkbox-4" name="rbt-checkbox-4" type="checkbox" value="yes">
+                                                    <label for="rbt-checkbox-4">Option Four</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Start Single Quiz  -->
+                                <!-- Start Single Quiz  -->
+                                <div id="question-2" class="question">
+                                    <div class="quize-top-meta">
+                                        <div class="quize-top-left">
+                                            <span>Questions No: <strong>2/5</strong></span>
+                                            <span>Attempts Allowed: <strong>2</strong></span>
+                                        </div>
+                                        <div class="quize-top-right">
+                                            <span>Time remaining: <strong>No Limit</strong></span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="rbt-single-quiz">
+                                        <h4>2. What is the Javascript?</h4>
+                                        <div class="row g-3 mt--10">
+                                            <div class="col-lg-6">
+                                                <div class="rbt-form-check">
+                                                    <input class="form-check-input" type="radio" name="rbt-radio" id="rbt-radio-1">
+                                                    <label class="form-check-label" for="rbt-radio-1"> Option One</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="rbt-form-check">
+                                                    <input class="form-check-input" type="radio" name="rbt-radio" id="rbt-radio-2">
+                                                    <label class="form-check-label" for="rbt-radio-2"> Option Two</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="rbt-form-check">
+                                                    <input class="form-check-input" type="radio" name="rbt-radio" id="rbt-radio-3">
+                                                    <label class="form-check-label" for="rbt-radio-3"> Option Three</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="rbt-form-check">
+                                                    <input class="form-check-input" type="radio" name="rbt-radio" id="rbt-radio-4">
+                                                    <label class="form-check-label" for="rbt-radio-4"> Option Four</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Quiz  -->
+
+                                <div class="rbt-quiz-btn-wrapper mt--30">
+                                    <button class="rbt-btn bg-primary-opacity btn-sm" id="prev-btn" type="button">Previous</button>
+                                    <button class="rbt-btn bg-primary-opacity btn-sm" id="next-btn" type="button">Next</button>
+                                    <a href="#" class="rbt-btn btn-gradient btn-sm" id="submit-btn">Submit</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--<div class="bg-color-extra2 ptb--15 overflow-hidden">
+        <div class="rbt-button-group">
+
+            <a class="rbt-btn icon-hover icon-hover-left btn-md bg-primary-opacity" href="#">
+                <span class="btn-icon"><i class="feather-arrow-left"></i></span>
+                <span class="btn-text">Previous</span>
+            </a>
+
+            <a class="rbt-btn icon-hover btn-md" href="#">
+                <span class="btn-text">Next</span>
+                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+            </a>
+
+        </div>
+    </div>-->
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="rbt-progress-parent">
+        <svg class="rbt-back-circle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+
+
+</div>

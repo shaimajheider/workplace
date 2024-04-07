@@ -1,0 +1,215 @@
+﻿<div class="container-fluid py-4" dir="rtl">
+    <div class="row">
+        <div class="col-12">
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            <!--Student Info-->
+            <div class="card" v-if="state==0">
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="mb-0">بيانات العروض | طلبات النشر   </h5>
+                            <p class="text-sm mb-0">
+                                قائمة العروض    داخل النظام   .
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+
+                        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                            <div class="dataTable-top">
+
+                                <div class="row" style="width:100%">
+                                    <!--<div class="col-md-3">
+                                        <label> البحت بي التاريخ </label>
+
+                                        <el-date-picker style="width:100%" v-model="SelectedDate"
+                                                        @change="GetInfo()"
+                                                        type="date"
+                                                        placeholder="تاريخ ">
+                                        </el-date-picker>
+                                    </div>-->
+
+                                    <div class="col-md-12">
+
+                                        <div class="dataTable-dropdown d-flex justify-content-end" style="float:left">
+                                            <div class="col-md-3">
+                                                <el-select v-model="pageSize" @change="GetInfo()">
+                                                    <el-option v-for="item in [
+                                                       {id:5,name:'5'},
+                                                       {id:10,name:'10'},
+                                                       {id:20,name:'20'},
+                                                       {id:30,name:'30'},
+                                                       {id:50,name:'50'},
+                                                       {id:100,name:'100'}]"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <el-alert v-if="Info==0"
+                                      title="لاتوجد بيانات في الوقت الحالي"
+                                      type="info"
+                                      :closable="false"
+                                      show-icon style="font-size: 20px !important; margin-top: 25px;
+                                        margin-bottom: 25px; width: 96%; margin-right: 2%; ">
+                            </el-alert>
+                            <div class="dataTable-container" v-if="Info!=0">
+
+                                <table class="table table-flush dataTable-table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a href="#"> إسم الشركة </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"> رقم هاتف الشركة </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"> نوع الغرفة </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  اسم العرض </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  وصف العرض   </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  الفئة المستهدفة </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  أقل مدة للحجز   </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  اكبر مدة للحجز   </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  السعر  </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  قيمة الحجز المبدئي  </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">الاعدادات</a>
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in Info">
+                                            <td class="text-sm">{{index+1}}</td>
+                                            <td class="text-sm">{{item.companiesName}}</td>
+                                            <td class="text-sm">{{item.companiesPhone}}</td>
+                                            <td class="text-sm">
+                                                <el-tag type="info" v-if="item.type==1">غرفة اجتماعات </el-tag>
+                                                <el-tag type="info" v-if="item.type==2">غرفة خاصة  </el-tag>
+                                                <el-tag type="info" v-if="item.type==3">قاعة دراسية  </el-tag>
+                                                <el-tag type="info" v-if="item.type==4">قاعة مفتوحة  </el-tag>
+                                                <el-tag type="info" v-if="item.type==5">قاعات اجتماعات  </el-tag>
+                                                <el-tag type="info" v-if="item.type==6">موقوف </el-tag>
+                                            </td>
+                                            <td class="text-sm">{{item.name}}</td>
+                                            <td class="text-sm">{{item.discriptions}}</td>
+                                            <td class="text-sm">
+                                                <el-tag type="info" v-if="item.target==1"> شركات </el-tag>
+                                                <el-tag type="info" v-if="item.target==2"> طلاب   </el-tag>
+                                                <el-tag type="info" v-if="item.target==3"> أخرين   </el-tag>
+                                            </td>
+                                            <td class="text-sm">
+                                                {{item.lessLenth}}/
+                                                <span v-if="item.lenthType==1"> ساعات </span>
+                                                <span v-if="item.lenthType==2"> أيام   </span>
+                                                <span v-if="item.lenthType==3"> أشهر   </span>
+
+                                            </td>
+                                            <td class="text-sm">
+                                                {{item.maxLenth}} / 
+                                                <span v-if="item.lenthType==1"> ساعات </span>
+                                                <span v-if="item.lenthType==2"> أيام   </span>
+                                                <span  v-if="item.lenthType==3"> أشهر   </span>
+
+                                            </td>
+                                            <td class="text-sm">{{item.price}}</td>
+                                            <td class="text-sm">{{item.InitialPaymentPrice}}</td>
+                                            <td class="text-sm">
+                                                <a href="#"
+                                                   @click.prevent="Active(item.id)"
+                                                   class="mx-3"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Edit product">
+                                                    <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i>
+                                                </a>
+                                                
+                                                <a href="#"
+                                                   @click.prevent="Deactivate(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Edit product">
+                                                    <i class="fa fa-ban text-danger"  aria-hidden="true"></i>
+                                                </a>
+                                                <a href="#"
+                                                   @click.prevent="Delete(item.id)"
+                                                     class="mx-3"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Delete product">
+                                                    <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+                                                </a>
+                                                                                        
+                                             </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div class="dataTable-bottom" v-if="Info!=0">
+                                <nav class="dataTable-pagination">
+                                    <el-pagination class="dataTable-pagination-list"
+                                                   background
+                                                   layout="prev, pager, next"
+                                                   :current-page="pageNo"
+                                                   :page-size="pageSize"
+                                                   :total="pages"
+                                                   @current-change="GetInfo($event)">
+                                    </el-pagination>
+                                </nav>
+                                <div class="dataTable-info">Showing {{pageSize}} of {{pages}} entries</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>

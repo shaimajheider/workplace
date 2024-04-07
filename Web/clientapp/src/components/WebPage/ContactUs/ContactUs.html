@@ -1,0 +1,156 @@
+﻿<div>
+
+
+    <div class="rbt-conatct-area bg-gradient-11 rbt-section-gap" 
+         style="background-image: linear-gradient(to right, #75bcd5, #6db6d0, #66b0cb, #5eabc6, #56a5c1, #4f9db9, #4796b1, #408ea9, #38839d, #307891, #286d85, #206279) !important; ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-center mb--60">
+                        <!--<span class="subtitle bg-secondary-opacity">Contact Us</span>-->
+                        <h2 class="title" style="color:white">جهاز دعم وتطوير الخدمات العلاجية <br> </h2>
+                        <br />
+                        <h4 class="title" style="color:white">توطين العلاج بالداخل <br> </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5" dir="rtl">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">
+                    <div class="rbt-address">
+                        <div class="icon">
+                            <i class="feather-headphones"></i>
+                        </div>
+                        <div class="inner">
+                            <h4 class="title" style="font-family: 'DroidArabicKufiRegular';">أرقام التواصل السريع</h4>
+                            <p style="direction: ltr; text-align: right;"><a href="#">+218 91 327 00 18</a></p>
+                            <!--<p style="direction: ltr; text-align: right;"><a href="#" >+218 94 457 81 48</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-delay="200" data-sal-duration="800">
+                    <div class="rbt-address">
+                        <div class="icon">
+                            <i class="feather-mail"></i>
+                        </div>
+                        <div class="inner">
+                            <h4 class="title" style="font-family: 'DroidArabicKufiRegular';">البريد الإلكتروني</h4>
+                            <p><a href="#">media@dsdms.gov.ly</a></p>
+                            <!--<p><a href="info@traneem.ly">info@traneem.ly</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12 sal-animate" data-sal="slide-up" data-sal-delay="250" data-sal-duration="800">
+                    <div class="rbt-address">
+                        <div class="icon">
+                            <i class="feather-map-pin"></i>
+                        </div>
+                        <div class="inner">
+                            <h4 class="title" style="font-family: 'DroidArabicKufiRegular';">موقعنا </h4>
+                            <p> السبعة - طرابلس - ليبيا <br> شارع طرابلس - مصراته - ليبيا </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rbt-contact-me bg-color-white rbt-section-gap" 
+         style="background-image: linear-gradient(to right, #75bcd5, #6db6d0, #66b0cb, #5eabc6, #56a5c1, #4f9db9, #4796b1, #408ea9, #38839d, #307891, #286d85, #206279) !important;">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="content">
+                        <div class="section-title text-end">
+                            <h2 class="title" style="color:white"> إرسال الملاحظات</h2>
+                            <p class="description mt--20" style="color: floralwhite">يمكن إرسال المحلاظات والتعليقات الخاصة بكم وستقوم الادارة بالرد في اقرب فرصة يمكن إرسال المحلاظات والتعليقات الخاصة بكم وستقوم الادارة بالرد في اقرب فرصة</p>
+                            <br />
+                            <div class="social-share-wrapper mt--30" dir="rtl">
+                                <h5 style=" color: ghostwhite; font-size: 14px;">كما يمكنكم متابعنا على الروابط التالية</h5>
+                                <ul class="social-icon social-default icon-naked justify-content-start mt--20">
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather-linkedin"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-xl-1">
+                    <div class="rbt-contact-form contact-form-style-1 max-width-auto">
+
+                        <el-form :model="ruleForm"
+                                 :rules="rules"
+                                 ref="ruleForm" class="w-100">
+                            <div class="form-group">
+                                <el-form-item label="الإسم" prop="Name">
+                                    <input v-model="ruleForm.Name" name="con_name" type="text" />
+                                    <span class="focus-border"></span>
+                                </el-form-item>
+
+                            </div>
+                            <div class="form-group">
+                                <el-form-item label="البريد الإلكتروني " prop="Email">
+                                    <input v-model="ruleForm.Email" name="con_email" type="email">
+                                    <span class="focus-border"></span>
+                                </el-form-item>
+
+                            </div>
+                            <div class="form-group">
+                                <el-form-item label="رقم الهاتف " prop="Phone">
+                                    <input v-model="ruleForm.Phone" type="text">
+                                    <span class="focus-border"></span>
+                                </el-form-item>
+                            </div>
+                            <div class="form-group">
+                                <el-form-item label="الرسالة " prop="Mesaage">
+                                    <textarea v-model="ruleForm.Mesaage"></textarea>
+                                    <span class="focus-border"></span>
+                                </el-form-item>
+                            </div>
+                            <div class="form-submit-group">
+                                <button type="submit"
+                                        @click.prevent="submitForm('ruleForm')"
+                                        class="rbt-btn radius-round btn-gradient hover-icon-reverse"
+                                        style="background-image: linear-gradient(to right, #75bcd5, #6db6d0, #66b0cb, #5eabc6, #56a5c1, #4f9db9, #4796b1, #408ea9, #38839d, #307891, #286d85, #206279) !important;">
+                                    <span class="icon-reverse-wrapper">
+                                        <span class="btn-text">إرسال البيانات</span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </el-form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="rbt-google-map bg-color-white rbt-section-gapTop" 
+         style="width:100%; background-image: linear-gradient(to right, #75bcd5, #6db6d0, #66b0cb, #5eabc6, #56a5c1, #4f9db9, #4796b1, #408ea9, #38839d, #307891, #286d85, #206279) !important;">
+        <!--<iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2965.0824050173574!2d-93.63905729999999!3d41.998507000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWebFilings%2C+University+Boulevard%2C+Ames%2C+IA!5e0!3m2!1sen!2sus!4v1390839289319" height="600" style="border:0"></iframe>-->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13406.270603516632!2d13.250949350637582!3d32.85669730329119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13a893d696b8aa37%3A0xebdce116e3f3d3ea!2z2KfZhNiz2KjYudipLCBUcmlwb2xp!5e0!3m2!1sen!2sly!4v1706555974492!5m2!1sen!2sly" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+    </div>
+
+</div>

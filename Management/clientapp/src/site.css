@@ -1,0 +1,327 @@
+﻿
+@import "../public/element-ui/lib/theme-chalk/index.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css";
+
+
+
+
+.navbar .sidenav-toggler-inner .sidenav-toggler-line {
+    transition: all .15s ease;
+    background: #67748e;
+    border-radius: 0.125rem;
+    position: relative;
+    display: block;
+    height: 2px;
+}
+
+.el-checkbox__label {
+    display: inline-block;
+    padding-right: 10px !important;
+    line-height: 19px;
+    font-size: 14px;
+}
+
+/*@media (max-width: 991.98px) .g-sidenav-show .navbar:not(.sidenav).navbar-main .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+}*/
+
+
+/*@media (min-width: 1500px) .d-xl-none {
+    display: none !important;
+}*/
+
+
+@media screen and (max-width: 300.98px) {
+    .d-xl-none {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 600.98px) and (min-width: 250.98px) {
+    .formInfo {
+        height: 8000px !important;
+    }
+    
+    .formInfo1 {
+        height: 1000px !important;
+    }
+}
+
+/*@media screen and (min-width: 600.98px) {
+    .formInfo {
+        height: 3100px !important;
+    }
+    .formInfo1 {
+        height: 1000px !important;
+    }
+}*/
+
+
+
+
+
+@media screen and (min-width: 790.98px) {
+    .formInfo {
+        height: 3100px !important;
+    }
+    .formInfo1 {
+        height: 1000px !important;
+    }
+}
+
+@media screen and (min-width: 250.98px) {
+    
+
+    .navbar-expand-lg .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto !important;
+    }
+
+
+}
+
+
+.swal2-container {
+    z-index: 20000 !important;
+}
+.el-picker-panel {
+    z-index: 9999 !important;
+}
+
+
+@media screen and (min-width: 992px) {
+    .main-content .navbar .dropdown .dropdown-menu {
+        top: 5px !important;
+    }
+}
+
+
+
+
+/*.el-dialog__wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0;
+    z-index: 99999 !important;
+}*/
+
+
+.el-tooltip__popper.is-light {
+    background: #FFF;
+    border: 1px solid #303133;
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+.el-tooltip__popper.is-dark {
+    background: #303133;
+    color: #FFF;
+    direction: rtl;
+    text-align: revert;
+}
+
+.el-dialog__title {
+    line-height: 24px;
+    font-size: 19px;
+    color: #303133;
+    font-weight: bold !important;
+}
+
+.badge-success {
+    color: white;
+    background-color: #b0eed3;
+}
+
+
+.dataTable-wrapper .dataTable-container .table thead tr th {
+    padding: 0.75rem 1.5rem;
+    opacity: .7;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+    color: black;
+}
+
+.mx-2 {
+    margin-left: 0rem !important;
+    margin-right: 0.8rem !important;
+}
+
+
+/* el-divider--horizontal {
+    display: block;
+    margin-top: -17px !important;
+    margin-bottom: 10px !important;
+    height: 1px;
+    width: 100%;
+} */
+
+
+
+
+
+@font-face {
+    font-family: 'DroidArabicKufiRegular';
+    src: url('../public/assets/fonts/DroidKufi-Regular.eot') format('embedded-opentype'), url('../public/assets/fonts/DroidKufi-Regular.woff') format('woff'), url('../public/assets/fonts/DroidKufi-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.el-form-item {
+    margin-bottom: 0px;
+}
+
+.el-form-item__content {
+    line-height: 24px;
+    position: relative;
+    font-size: 14px;
+}
+
+.el-form-item__label {
+    text-align: right;
+    vertical-align: middle;
+    float: right;
+    font-size: 14px;
+    color: #606266;
+    line-height: 24px;
+    padding: 20px 0 0px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.el-divider--horizontal {
+    display: block !important;
+    height: 1px; 
+    width: 100% !important;
+    /* margin: 24px 0; */
+    margin-top: -14px !important;
+    margin-bottom: -10px !important;
+}
+
+.headcol {
+    position: absolute;
+    width: 5em;
+    top: auto;
+margin: 0px auto !important;
+    /*only relevant for first row*/
+    /*compensate for top border*/
+  }
+  
+ 
+
+.el-upload-dragger {
+    background-color: #fff;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.el-upload {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+    width: 100%;
+}
+
+
+
+
+.el-form-item.is-required:not(.is-no-asterisk) > .el-form-item__label:before {
+    content: '*';
+    color: #F56C6C;
+    margin-right: 4px;
+    float: left;
+}
+
+.el-form-item__error {
+    color: #F56C6C;
+    font-size: 12px;
+    line-height: 1;
+    padding-top: 10px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: -3px;
+}
+
+
+
+.el-select {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.el-select-dropdown__item {
+    font-size: 14px;
+    text-align: right;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #606266;
+    height: 34px;
+    line-height: 34px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
+
+input {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+textarea {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+* {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+button {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+body {
+    font-family: 'DroidArabicKufiRegular' !important;
+}
+
+a {
+    font-family: 'DroidArabicKufiRegular' !important;
+}
+
+li {
+    font-family: 'DroidArabicKufiRegular';
+}
+
+
+
+.form-switch .form-check-input:after {
+    transition: transform 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #fff;
+    transform: translateX(-1px);
+    box-shadow: 0 0.25rem 0.375rem -0.0625rem rgb(20 20 20 / 12%), 0 0.125rem 0.25rem -0.0625rem rgb(20 20 20 / 7%);
+    top: 1px;
+    right: 0px;
+}

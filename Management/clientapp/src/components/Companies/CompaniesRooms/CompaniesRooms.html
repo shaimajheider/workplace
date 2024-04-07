@@ -1,0 +1,309 @@
+﻿<div class="container-fluid py-4" dir="rtl">
+    <div class="row">
+        <div class="col-12">
+
+            <!--Patient-->
+            <div class="card" v-if="state==0">
+                <!-- Card header -->
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="font-weight-bolder mb-0">بيانات الغرف   </h5>
+                            <!--<p class="mb-0 text-sm" style="margin-top: 7px;">قائمة بجميع الأسري المخزنين داخل النظام  </p>-->
+                        </div>
+                        <div class="ms-auto my-auto mt-lg-0 mt-4">
+                            <div class="ms-auto my-auto">
+                                <!--<button style="margin: 10px;" type="button" @click="AddItemPage"
+                                    class="btn btn-outline-primary btn-sm mb-0">
+                                    إضـافـة المـرضــى
+                                </button>-->
+
+
+                                <button style="margin: 10px;" type="button" @click="Refresh()"
+                                        class="btn btn-outline-warning btn-sm mb-0">
+                                    تحديث
+                                </button>
+
+                                <!--<button style="margin: 10px;" type="button" @click="ExportData()"
+                                        class="btn btn-outline-success btn-sm mb-0">
+                                    تصدير
+                                </button>
+                                <button style="margin: 10px;" type="button" @click="Print()"
+                                        class="btn btn-outline-primary btn-sm mb-0">
+                                    طباعة البيانات
+                                </button>
+                                <button style="margin: 10px;"
+                                        type="button"
+                                        v-if="loginDetails.userType == 1"
+                                        @click="GetPrintAllPatient()"
+                                        class="btn btn-outline-danger btn-sm mb-0">
+                                    طباعة بيانات كل الأسري
+                                </button>-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="row mt-3 px-3">
+                    
+                    <div class="col-md-11">
+                    </div>
+
+                    <div class="col-md-1">
+                        <div class="dataTable-top">
+                            <el-select v-model="pageSize"
+                                       @change="GetInfo()"
+                                       filterable
+                                       style=" width: 130%;margin-top:25px ">
+                                <el-option v-for="item in [{id:5,name:'5'},
+                                                           {id:10,name:'10'},
+                                                           {id:20,name:'20'},
+                                                           {id:40,name:'40'},
+                                                           {id:80,name:'80'}
+                                           ]"
+                                           :key="item.id"
+                                           :label="item.name"
+                                           :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="card-body px-0 pb-0">
+                    <el-alert style="margin-top:120px"
+                              v-if="Info==0"
+                              title="عذرا لاتــوجد بيـــانـــات  !!!"
+                              type="info"
+                              center :closable="false" show-icon>
+                    </el-alert>
+                    <div class="table-responsive">
+                        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns"
+                             v-if="Info!=0">
+                            <div class="dataTable-container">
+                                <table class="table table-flush dataTable-table" id="products-list">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a> نوع الغرفة  </a>
+                                            </th>
+                                            <th>
+                                                <a>  وصف  </a>
+                                            </th>
+                                            <th>
+                                                <a>  ملاحظات   </a>
+                                            </th>
+                                            <th>
+                                                <a> تاريخ الادراج</a>
+                                            </th>
+                                            <th style="text-align:left">
+                                                <a> الإعدادات</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr v-for="item,index in Info" style="cursor:pointer !important" :id="'element_'+index">
+                                            <td class="text-sm" @click.prevent="viewInfo(item)"
+                                                style="background-color:white">
+                                                {{index+1}}
+                                            </td>
+                                            <td class="text-sm">
+                                                <el-tag type="info" v-if="item.type==1">غرفة اجتماعات </el-tag>
+                                                <el-tag type="info" v-if="item.type==3">قاعة دراسية  </el-tag>
+                                                <el-tag type="info" v-if="item.type==2">مكتب خاص  </el-tag>
+                                                <el-tag type="info" v-if="item.type==4">قاعة مشتركة  </el-tag>
+                                                <el-tag type="info" v-if="item.type==5">قاعات خارجية  </el-tag>
+                                            </td>
+                                            <td class="text-sm" @click.prevent="viewInfo(item)"
+                                                style="background-color:white">
+                                                {{item.discriptions}}
+                                            </td>
+                                            <td class="text-sm" @click.prevent="viewInfo(item)"
+                                                style="background-color:white">
+                                                {{item.notes}}
+                                            </td>
+
+                                            <td class="text-sm" @click.prevent="viewInfo(item)"
+                                                style="background-color:white">
+                                                {{item.createdOn | moment}}
+                                            </td>
+                                            <!--<td class="text-sm" style="text-align: left; background-color: whitesmoke" v-if="!item.isSeen">
+        <a href="#"
+           class="mx-3"
+           @click.prevent="Delete(item.id)"
+           data-bs-toggle="tooltip"
+           data-bs-original-title="Preview product">
+            <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+        </a>
+    </td>-->
+                                            <td class="text-sm" style="text-align:left;background-color:white">
+                                                <a href="#"
+                                                   class="mx-3"
+                                                   @click.prevent="Delete(item.id)"
+                                                   data-bs-toggle="tooltip"
+                                                   data-bs-original-title="Preview product">
+                                                    <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <el-divider></el-divider>
+                                <div style="text-align: left; margin-left: 50px;margin-top: 20px;">
+                                    Showing <span style="font-weight:bold;">
+                                        {{Info.length}}
+                                    </span> of
+                                    <span style="font-weight:bold;">{{pages}}</span>
+                                </div>
+                                <div style="text-align: center;padding-bottom:11px">
+                                    <el-pagination background layout="prev, pager, next"
+                                                   :current-page="pageNo"
+                                                   :page-size="pageSize"
+                                                   :total="pages"
+                                                   @current-change="GetInfo($event)">
+                                    </el-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Patient Info -->
+                <el-dialog title="بيانات الرسالة"
+                           :visible.sync="AddViewDilogRequest"
+                           width="70%"
+                           style="margin-right: 245px;" center>
+
+                    <div class="row">
+
+                        <el-form label-position="top"
+                                 ref="AddChangeRequestruleForm"
+                                 label-width="120px" class="demo-ruleForm"
+                                 style="width: 100%;">
+                            <br />
+                            <div class="row" dir="rtl">
+
+
+                                <div class="col-md-4">
+                                    <h6>
+                                        نوع الغرفة:
+                                        <el-tag type="info" v-if="SelectedItem.type==1">غرفة اجتماعات </el-tag>
+                                        <el-tag type="info" v-if="SelectedItem.type==3">قاعة دراسية  </el-tag>
+                                        <el-tag type="info" v-if="SelectedItem.type==2">مكتب خاص  </el-tag>
+                                        <el-tag type="info" v-if="SelectedItem.type==4">قاعة مشتركة  </el-tag>
+                                        <el-tag type="info" v-if="SelectedItem.type==5">قاعات خارجية  </el-tag>
+                                    </h6>
+
+
+                                </div>
+
+                                <div class="col-md-8">
+                                    <h6>
+                                        الوصف  :
+                                        <el-tag type="info"> {{SelectedItem.discriptions}}</el-tag>
+                                    </h6>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                
+                                <div class="col-md-12">
+                                    <h6>
+                                        ملاحظات   :
+                                        <el-tag type="info"> {{SelectedItem.notes}}</el-tag>
+                                    </h6>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <div class="col-md-12">
+                                    <h6>
+                                        المرفقات   :
+                                    </h6>
+                                </div>
+                                <br />
+                                <div class="col-md-12">
+                                    <el-alert style="margin-top:5px"
+                                              v-if="SelectedItem.messageAttachments==0"
+                                              title=" الرسالة لا تحتوي على مرفقات   !!!"
+                                              type="info"
+                                              center :closable="false" show-icon>
+                                    </el-alert>
+                                    <ul class="el-upload-list el-upload-list--picture-card">
+                                        <li class="el-upload-list__item is-ready"
+                                            v-if="SelectedItem.messageAttachments!=0"
+                                            v-for="item,index in SelectedItem.messageAttachments">
+                                            <div>
+                                                <img :src="ServerUrl+item.url" alt="" class="el-upload-list__item-thumbnail">
+                                                <span class="el-upload-list__item-actions">
+                                                    <span class="el-upload-list__item-preview"
+                                                          @click="handlePictureCardPreview(item)"
+                                                          style="margin-left: 15px;">
+                                                        <i class="el-icon-zoom-in"></i>
+                                                    </span>
+                                                    <span class="el-upload-list__item-delete"
+                                                          @click="handleDownload(item)">
+                                                        <i class="el-icon-download"></i>
+                                                    </span>
+                                                    <!--<span class="el-upload-list__item-delete"
+                                                          @click="handleRemove(item.id)">
+                                                        <i class="el-icon-delete"></i>
+                                                    </span>-->
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <el-dialog :visible.sync="dialogVisible">
+                                            <img width="100%" :src="dialogImageUrl" alt="">
+                                        </el-dialog>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </el-form>
+                    </div>
+
+                </el-dialog>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,198 @@
+﻿<div class="container-fluid py-4" dir="rtl">
+    <div class="row">
+        <div class="col-12">
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            <!--Student Info-->
+            <div class="card" v-if="state==0">
+                <div class="card-header pb-0">
+                    <div class="d-lg-flex">
+                        <div>
+                            <h5 class="mb-0">بيانات الإشتراكات  </h5>
+                            <p class="text-sm mb-0">
+                                قائمة الإشترااكات   داخل النظام   .
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body px-0 pb-0">
+                    <div class="table-responsive">
+
+                        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                            <div class="dataTable-top">
+
+                                <div class="row" style="width:100%">
+                                    <!--<div class="col-md-3">
+                                        <label> البحت بي التاريخ </label>
+
+                                        <el-date-picker style="width:100%" v-model="SelectedDate"
+                                                        @change="GetInfo()"
+                                                        type="date"
+                                                        placeholder="تاريخ ">
+                                        </el-date-picker>
+                                    </div>-->
+
+                                    <div class="col-md-12">
+
+                                        <div class="dataTable-dropdown d-flex justify-content-end" style="float:left">
+                                            <div class="col-md-3">
+                                                <el-select v-model="pageSize" @change="GetInfo()">
+                                                    <el-option v-for="item in [
+                                                       {id:5,name:'5'},
+                                                       {id:10,name:'10'},
+                                                       {id:20,name:'20'},
+                                                       {id:30,name:'30'},
+                                                       {id:50,name:'50'},
+                                                       {id:100,name:'100'}]"
+                                                               :key="item.id"
+                                                               :label="item.name"
+                                                               :value="item.id">
+                                                    </el-option>
+                                                </el-select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <el-alert v-if="Info==0"
+                                      title="لاتوجد بيانات في الوقت الحالي"
+                                      type="info"
+                                      :closable="false"
+                                      show-icon style="font-size: 20px !important; margin-top: 25px;
+                                        margin-bottom: 25px; width: 96%; margin-right: 2%; ">
+                            </el-alert>
+                            <div class="dataTable-container" v-if="Info!=0">
+
+                                <table class="table table-flush dataTable-table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>
+                                                <a href="#">#</a>
+                                            </th>
+                                            <th>
+                                                <a href="#"> إسم المستخدم </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"> إسم العرض </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  تاريخ البداية  </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  تاريخ النهاية  </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">  تاريخ أخر دفعة   </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"> القيمة المدفوعة  </a>
+                                            </th>
+                                            <th>
+                                                <a href="#"> القيمة المتبقية  </a>
+                                            </th>
+                                            <th>
+                                                <a href="#">تاريخ الإدراج  </a>
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item,index in Info">
+                                            <td class="text-sm">{{index+1}}</td>
+                                            <!--<td>
+                                                <div class="d-flex">
+                                                    <img class="avatar avatar-sm me-3" :src="item.imagePath" alt="avatar image">
+                                                    <h6 class="ms-3 my-auto">{{item.name}}</h6>
+                                                </div>
+                                            </td>-->
+                                        <td class="text-sm">{{item.name}}</td>
+                                        <td class="text-sm">{{item.offerName}}</td>
+                                        <td class="text-sm">{{item.start | moment}}</td>
+                                        <td class="text-sm">{{item.end | moment}}</td>
+                                        <td class="text-sm">{{item.lastPaymentDate | moment}}</td>
+                                        <td class="text-sm">{{item.paiedValue}}</td>
+                                        <td class="text-sm">{{item.remindValue}}</td>
+                                            <td class="text-sm">{{item.createdOn | moment}}</td>
+                                            <!--<td>
+                                                <span class="badge badge-warning badge-sm" v-if="item.userInfo.levels==1 || item.userInfo.levels==2 || item.userInfo.levels==3">Not Compleate </span>
+                                                <span class="badge badge-danger badge-sm" v-if="item.userInfo.levels==5">Rejected</span>
+                                                <span class="badge badge-success badge-sm" v-if="item.userInfo.levels==4">Accepted</span>
+                                            </td>-->
+                                            <!--<td class="text-sm">
+                                            <a href="#"
+                                               @click.prevent="OpenEditItemDilog(item)"
+                                               class="mx-3"
+                                               data-bs-toggle="tooltip"
+                                               data-bs-original-title="Edit product">
+                                                <i class="fa fa-pencil text-warning" aria-hidden="true"></i>
+                                            </a>
+
+                                            <a href="#"
+                                               @click.prevent="delteUser(item.id)"
+                                               data-bs-toggle="tooltip"
+                                               data-bs-original-title="Delete product">
+                                                <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+                                            </a>-->
+                                            <!--<a href="#"
+                                               class="mx-3"
+                                               @click.prevent="OpenStudentProfile(item)"
+                                               data-bs-toggle="tooltip"
+                                               data-bs-original-title="Preview product">
+                                                <i class="fa fa-folder text-secondary" aria-hidden="true"></i>
+                                            </a>
+
+                                            <a href="#"
+                                               @click.prevent="OpenWalletInfo(item)"
+                                               data-bs-toggle="tooltip"
+                                               data-bs-original-title="Preview product">
+                                                <i class="fa fa-credit-card text-info" aria-hidden="true"></i>
+                                            </a>-->
+                                            <!--</td>-->
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div class="dataTable-bottom" v-if="Info!=0">
+                                <nav class="dataTable-pagination">
+                                    <el-pagination class="dataTable-pagination-list"
+                                                   background
+                                                   layout="prev, pager, next"
+                                                   :current-page="pageNo"
+                                                   :page-size="pageSize"
+                                                   :total="pages"
+                                                   @current-change="GetInfo($event)">
+                                    </el-pagination>
+                                </nav>
+                                <div class="dataTable-info">Showing {{pageSize}} of {{pages}} entries</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>

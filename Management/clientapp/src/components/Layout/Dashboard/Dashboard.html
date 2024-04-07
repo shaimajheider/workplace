@@ -1,0 +1,246 @@
+﻿
+
+
+
+<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main" >
+    <div class="sidenav-header" dir="rtl">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href="#" @click.prevent="OpenMenuByToggle()" target="_blank">
+            <img src="/Img/3774299.png" v-if="!loginDetails.image" class="navbar-brand-img h-100" alt="main_logo">
+            <img :src="loginDetails.image" v-if="loginDetails.image" class="navbar-brand-img h-100" alt="main_logo">
+            <span class="ms-1 font-weight-bold"> {{SystemName}} | لوحة التحكم</span>
+        </a>
+    </div>
+
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto h-auto " id="sidenav-collapse-main" dir="rtl"  >
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link active collapsed" aria-controls="dashboardsExamples" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">{{loginDetails.name}}</span>
+                </a>
+                <div class="collapse" id="dashboardsExamples">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/Profile')">
+                                <span class="sidenav-normal"> الملف الشخصي </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="Logout()">
+                                <span class="sidenav-normal"> تسجيل الخروج </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" @click.prevent="href('/')" target="_blank">
+                    <div class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-shop text-danger text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">الصفحة الرئيسية </span>
+                </a>
+            </li>
+
+
+
+
+
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#Offers" class="nav-link  collapsed" aria-controls="Offers" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-diamond text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1" style="font-weight: normal;">إدارة بيانات العروض   </span>
+                </a>
+                <div class="collapse" id="Offers">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/Offers')">
+                                <span class="sidenav-normal">  عرض بيانات العروض  </span>
+                            </a>
+                        </li>
+                        <li class="nav-item " v-if="loginDetails.userType == 2">
+                            <a class="nav-link " href="#" @click.prevent="href('/AddOffers')">
+                                <span class="sidenav-normal">    تقديم طلب نشر اعلان   </span>
+                            </a>
+                        </li>
+                        <li class="nav-item "  v-if="loginDetails.userType == 1">
+                            <a class="nav-link " href="#" @click.prevent="href('/OffersRequest')">
+                                <span class="sidenav-normal">  طلبات النشر   </span>
+                            </a>
+                        </li>
+
+                        <!--<li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/AddArrested')">
+                                <span class="sidenav-normal">  تقديم طلب جديد    </span>
+                            </a>
+                        </li>-->
+                    </ul>
+                </div>
+            </li>
+            
+            
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#Room" class="nav-link  collapsed" aria-controls="Offers" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-atom text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1" style="font-weight: normal;">إدارة بيانات الغرف   </span>
+                </a>
+                <div class="collapse" id="Room">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/CompaniesRooms')">
+                                <span class="sidenav-normal">  عرض بيانات الغرف  </span>
+                            </a>
+                        </li>
+                        <li class="nav-item " v-if="loginDetails.userType == 2">
+                            <a class="nav-link " href="#" @click.prevent="href('/AddCompaniesRooms')">
+                                <span class="sidenav-normal">    إضافة غرفة   </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="#"  @click.prevent="href('/Subscriptions')" target="_blank">
+                    <div class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-badge text-warning text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">إدارة بيانات الإشتراكات  </span>
+                </a>
+            </li>
+
+
+
+
+            <li class="nav-item"  v-if="loginDetails.userType == 1">
+                <a data-bs-toggle="collapse" href="#Add" class="nav-link  collapsed" aria-controls="Add" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-collection text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1" style="font-weight: normal;">إدارة بيانات العملاء   </span>
+                </a>
+                <div class="collapse" id="Add">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/Clints')">
+                                <span class="sidenav-normal">  عرض بيانات العملاء  </span>
+                            </a>
+                        </li>
+                        <!--<li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/AddArrested')">
+                                <span class="sidenav-normal">  طلبات الإنظمام   </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/AddDocumentEntry')">
+                                <span class="sidenav-normal">  العملاء الموقوفين    </span>
+                            </a>
+                        </li>-->
+                    </ul>
+                </div>
+            </li>
+
+
+
+
+
+
+
+
+
+            <li class="nav-item"  v-if="loginDetails.userType == 1">
+                <a data-bs-toggle="collapse" href="#Companies" class="nav-link  collapsed" aria-controls="Companies" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                        <i class="ni ni-world-2 text-dark text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1" style="font-weight: normal;">إدارة بيانات الشركات   </span>
+                </a>
+
+                <div class="collapse" id="Companies">
+                    <ul class="nav ms-4">
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/Companies')">
+                                <span class="sidenav-normal">  عرض بيانات الشركات  </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/AddCompanies')">
+                                <span class="sidenav-normal">   إضافة شركة جديدة   </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/CompaniesRequest')">
+                                <span class="sidenav-normal">  طلبات الإنظمام   </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#" @click.prevent="href('/Suspend')">
+                                <span class="sidenav-normal">  الشركات الموقوفين    </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
+            <li class="nav-item"  v-if="loginDetails.userType == 1">
+                <hr class="horizontal dark" />
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">الإعدادات  </h6>
+            </li>
+
+
+
+            <li class="nav-item"  v-if="loginDetails.userType == 1">
+                <a class="nav-link" href="#" @click.prevent="href('/ContactUs')" target="_blank">
+                    <div class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-bulb-61 text-danger text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">التواصل معنا  </span>
+                </a>
+            </li>
+
+
+            <li class="nav-item"  v-if="loginDetails.userType == 1">
+                <a class="nav-link" href="#" @click.prevent="href('/Users')"
+                   v-if="loginDetails.userType==1" target="_blank">
+                    <div class="icon icon-shape icon-sm text-center  me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-02 text-info text-sm"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">إدارة المستخدمين </span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="sidenav-footer mx-3 my-3">
+        <div class="card card-plain shadow-none" id="sidenavCard">
+            <img class="w-60 mx-auto" :src="logoPath" alt="sidebar_illustration">
+            <div class="card-body text-center p-3 w-100 pt-0">
+                <div class="docs-info">
+                    <!--<h6 class="mb-0"> {{WebSiteName}} </h6>
+                    <p class="text-xs font-weight-bold mb-0"> {{SystemName}}</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+
+
+
